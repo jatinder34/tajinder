@@ -2,7 +2,7 @@
 <aside class="main-sidebar col-12 col-md-3 col-lg-2 px-0">
   <div class="main-navbar">
     <nav class="navbar align-items-stretch navbar-light bg-white flex-md-nowrap border-bottom p-0">
-      <a class="navbar-brand w-100 mr-0" href="#" style="line-height: 25px;">
+      <a class="navbar-brand w-100 mr-0" href="{{url('/admin/dashboard')}}" style="line-height: 25px;">
         <div class="d-table m-auto">
           <img id="main-logo" class="d-inline-block align-top mr-1" style="max-width: 25px;" src="{{URL::asset('/public/images/avatar.jpg')}}" alt="Shards Dashboard">
           <span class="d-none d-md-inline ml-1">ClickOnik</span>
@@ -25,47 +25,47 @@
   <div class="nav-wrapper">
     <ul class="nav flex-column">
       <li class="nav-item">
-        <a class="nav-link active" href="index.html">
+        <a class="nav-link active" href="{{url('/admin/dashboard')}}">
           <i class="material-icons">edit</i>
-          <span>Blog Dashboard</span>
+          <span>Dashboard</span>
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link " href="components-blog-posts.html">
-          <i class="material-icons">vertical_split</i>
-          <span>Blog Posts</span>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link " href="add-new-post.html">
+        <a class="nav-link " href="{{url('/admin/createLink')}}">
           <i class="material-icons">note_add</i>
-          <span>Add New Post</span>
+          <span>Create link</span>
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link " href="form-components.html">
-          <i class="material-icons">view_module</i>
-          <span>Forms &amp; Components</span>
+        <a class="nav-link " href="{{url('/admin/linkList')}}">
+          <i class="material-icons">vertical_split</i>
+          <span>Link list</span>
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link " href="tables.html">
-          <i class="material-icons">table_chart</i>
-          <span>Tables</span>
+        <a class="nav-link " href="{{url('/admin/addfilterCategory')}}">
+          <i class="material-icons">note_add</i>
+          <span>Add filter category</span>
         </a>
       </li>
       <li class="nav-item">
+        <a class="nav-link " href="{{url('/admin/filterList')}}">
+          <i class="material-icons">vertical_split</i>
+          <span>Filter category list</span>
+        </a>
+      </li>
+      <!-- <li class="nav-item">
         <a class="nav-link " href="user-profile-lite.html">
           <i class="material-icons">person</i>
           <span>User Profile</span>
         </a>
-      </li>
-      <li class="nav-item">
+      </li> -->
+      <!-- <li class="nav-item">
         <a class="nav-link " href="errors.html">
           <i class="material-icons">error</i>
           <span>Errors</span>
         </a>
-      </li>
+      </li> -->
     </ul>
   </div>
 </aside>
