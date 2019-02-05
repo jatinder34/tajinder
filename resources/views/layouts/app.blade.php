@@ -11,7 +11,7 @@
     <!--===================================================================================-->
     <title>Tajinder</title>
     <!--===================================================================================-->
-    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <!--===================================================================================-->
     <!------ Include the above in your HEAD tag ---------->
 
@@ -20,6 +20,7 @@
     <!--===================================================================================-->
     <link href='http://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
     <!--===================================================================================-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css" integrity="sha256-HtCCUh9Hkh//8U1OwcbD8epVEUdBvuI8wj1KtqMhNkI=" crossorigin="anonymous" />
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <!--===================================================================================-->
@@ -29,10 +30,14 @@
     <!--===================================================================================-->
 </head>
 <body>
-    <div id="app">
-        <main class="py-4">
-            @yield('content')
-        </main>
+    <div class="main">
+        <div class="container">
+            <center>
+                <div class="middle">
+                    @yield('content')
+                </div>
+            </center>
+        </div>
     </div>
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
     <!--===================================================================================-->

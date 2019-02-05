@@ -1,54 +1,46 @@
 @extends('layouts.app')
 
 @section('content')
-<!-- LOGIN FORM -->
-<div class="text-center" style="padding:160px 0">
-    <div class="logo">login</div>
-    <!-- Main Form -->
-    @if ($errors->has('email'))
-        <span class="invalid-feedback" role="alert">
-            <strong>{{ $errors->first('email') }}</strong>
-        </span>
-    @endif
-    @if ($errors->has('password'))
-        <span class="invalid-feedback" role="alert">
-            <strong>{{ $errors->first('password') }}</strong>
-        </span>
-    @endif
-    <div class="login-form-1">
-        <form id="login-form" class="text-left" method="POST" action="{{ url('/admin/login') }}">
-            @csrf
-            <div class="login-form-main-message"></div>
-            <div class="main-login-form">
-                <div class="login-group">
-                    <div class="form-group">
-                        <label for="lg_username" class="sr-only">Username</label>
-                        <input type="text" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" id="lg_username" name="email" placeholder="username" value="{{ old('email') }}" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="lg_password" class="sr-only">Password</label>
-                        <input type="password" id="lg_password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required placeholder="password">
-                    </div>
-                    <div class="form-group login-group-checkbox">
-                        <input type="checkbox" id="lg_remember" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-                        <label for="lg_remember">remember</label>
-                    </div>
-                </div>
-                <button type="submit" class="login-button"><i class="fa fa-chevron-right"></i></button>
-            </div>
-            <div class="etc-login-form">
-                @if (Route::has('password.request'))
-                    <p>forgot your password?
-                        <a href="{{ route('password.request') }}">
-                            click here
-                        </a>
-                    </p>
-                @endif
-                <p>new user? <a href="{{ route('register') }}">create new account</a></p>
-            </div>
-        </form>
-    </div>
-    <!-- end:Main Form -->
-</div>
 
+     @if ($errors->has('email'))
+         <span class="invalid-feedback" role="alert">
+             <strong>{{ $errors->first('email') }}</strong>
+         </span>
+     @endif
+     @if ($errors->has('password'))
+         <span class="invalid-feedback" role="alert">
+             <strong>{{ $errors->first('password') }}</strong>
+         </span>
+     @endif
+       <div id="login">
+           <form method="POST" action="{{ url('/admin/login') }}">
+               <fieldset class="clearfix">
+                @csrf
+                   <p><span class="fa fa-user"></span>
+                       <input name="email" type="text" Placeholder="Username" required>
+                   </p>
+                   <!-- JS because of IE support; better: placeholder="Username" -->
+                   <p><span class="fa fa-lock"></span>
+                       <input name="password"  type="password" Placeholder="Password" required>
+                   </p>
+                   <!-- JS because of IE support; better: placeholder="Password" -->
+                   <div>
+                    @if (Route::has('password.request'))
+                    <span style="width:48%; text-align:left;  display: inline-block;"><a class="small-text" href="{{ route('password.request') }}"style="color: #848484;">Forgot
+                       password?</a></span>
+                    @endif
+                       <!-- <p>new user? <a href="{{ route('register') }}">create new account</a></p> -->
+                       <span style="width:50%; text-align:right;  display: inline-block;"><input type="submit" value="Sign In"></span>
+                   </div>
+               </fieldset>
+               <div class="clearfix"></div>
+           </form>
+           <div class="clearfix"></div>
+       </div>
+       <!-- end login -->
+       <div class="logo wow animated flip text-sky" data-wow-delay="0.2s">
+           <img width="80" src="{{URL::asset('/public/images/avatar.jpg')}}">
+           <p>Click<span class="text-orange">Onik</span></p>
+          <div class="clearfix"></div>
+       </div>
 @endsection

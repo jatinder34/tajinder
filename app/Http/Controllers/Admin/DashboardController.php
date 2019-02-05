@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Models\CreateLink;
 use App\Models\CloakingFilter;
+use App\Models\RedirectLinkTrack;
 use Toastr,URL;
 class DashboardController extends Controller
 {
@@ -70,7 +71,7 @@ class DashboardController extends Controller
 
     public function linkList()
     {
-        $createlink = CreateLink::get();
+        $createlink = CreateLink::orderBy('id','DESC')->get();
         return view('Admin.link_list',['createlinks' => $createlink]);
     }
 
@@ -85,13 +86,6 @@ class DashboardController extends Controller
            $message = array('success' => false, 'message' => "Somthing went wrong, please try again!" );
            return json_encode($message);         
        }
-    }
-
-    public function redirectLink($id)
-    {
-        // $_SERVER["REMOTE_ADDR"];
-        $createlink = CreateLink::find($id);
-        return redirect($createlink->merchent_link);
     }
 
     public function addfilterCategory()
@@ -168,7 +162,7 @@ class DashboardController extends Controller
     }
     public function filterCategoryList()
     {
-        $filters = CloakingFilter::get();
+        $filters = CloakingFilter::orderBy('id','DESC')->get();
         return view('Admin.filter_list',['filters'=> $filters]);
     }
 }

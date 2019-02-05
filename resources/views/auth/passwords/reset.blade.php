@@ -1,10 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-<!-- REGISTRATION FORM -->
-<div class="text-center" style="padding:160px 0">
-    <div class="logo">reset password</div>
-        @if($errors->has('name') || $errors->has('email') || $errors->has('password'))
+<div id="login">
+    @if($errors->has('name') || $errors->has('email') || $errors->has('password'))
         <div class="row">
             <div class="col-md-12">
                 @if ($errors->has('password'))
@@ -16,29 +14,33 @@
             </div>
         </div>
         @endif
-    <!-- Main Form -->
-    <div class="login-form-1">
-        <form id="register-form" class="text-left" method="POST" action="{{ url('/admin/reset-password') }}">
-            @csrf
-            <input type="hidden" name="token" value="{{ $token }}">
-            <div class="login-form-main-message"></div>
-            <div class="main-login-form">
-                <div class="login-group">
-                    <div class="form-group">
-                        <label for="reg_password" class="sr-only">New Password</label>
-                        <input type="password" id="reg_password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="new_password" placeholder="new password" required="">
-                    </div>
-                    <div class="form-group">
-                        <label for="reg_password_confirm" class="sr-only">Password Confirm</label>
-                        <input type="password" class="form-control" id="reg_password_confirm" name="confirm_password" required placeholder="confirm password">
-                    </div>
-                    
-                </div>
-                <button type="submit" class="login-button"><i class="fa fa-chevron-right"></i></button>
-            </div>
-        </form>
-    </div>
-    <!-- end:Main Form -->
+   <form method="POST" action="{{ url('/admin/reset-password') }}">
+       <fieldset class="clearfix">
+        @csrf
+        <input type="hidden" name="token" value="{{ $token }}">
+           <p><span class="fa fa-user"></span>
+               <input type="password" id="reg_password" class="{{ $errors->has('password') ? ' is-invalid' : '' }}" name="new_password" placeholder="new password" required="">
+           </p>
+           <!-- JS because of IE support; better: placeholder="Username" -->
+           <p><span class="fa fa-lock"></span>
+               <input type="password" class="" id="reg_password_confirm" name="confirm_password" required placeholder="confirm password">
+           </p>
+           <!-- JS because of IE support; better: placeholder="Password" -->
+           <div>
+               <!-- <p>new user? <a href="{{ route('register') }}">create new account</a></p> -->
+               <span style="width:100%; text-align:right;  display: inline-block;"><input type="submit" value="Save"></span>
+           </div>
+       </fieldset>
+       <div class="clearfix"></div>
+   </form>
+   <div class="clearfix"></div>
 </div>
+<!-- end login -->
+<div class="logo wow animated flip text-sky" data-wow-delay="0.2s">
+   <img width="80" src="{{URL::asset('/public/images/avatar.jpg')}}">
+   <p>Click<span class="text-orange">Onik</span></p>
+  <div class="clearfix"></div>
+</div>
+
 
 @endsection
