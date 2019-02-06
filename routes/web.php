@@ -26,7 +26,7 @@ Route::group(['prefix' => 'admin'], function () {
 	Route::post('/createLink', 'Admin\DashboardController@generateLink');
 	Route::get('/linkList', 'Admin\DashboardController@linkList');
 	Route::post('/deleteLink', 'Admin\DashboardController@deleteLink');
-	Route::get('/go/{id}', 'Admin\DashboardController@redirectLink');
+	Route::get('/go/{id}', 'Admin\RedirectController@redirectLink');
 	Route::get('/addfilterCategory', 'Admin\DashboardController@addfilterCategory');
 	Route::post('/addfilterCategory', 'Admin\DashboardController@insertFilter');
 	Route::get('/editfilterCategory/{id}', 'Admin\DashboardController@editfilterCategory');

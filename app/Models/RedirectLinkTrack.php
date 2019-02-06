@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class CloakingFilter extends Model
+class RedirectLinkTrack extends Model
 {
 
     /**
@@ -12,9 +12,9 @@ class CloakingFilter extends Model
      *
      * @var array
      */
-    protected $table = 'cloaking_filters';
+    protected $table = 'redirect_link_track';
 
     protected $fillable = [
-        'filter_name'
+        'ip','click_count','type','linkid'
     ];
 }

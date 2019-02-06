@@ -18,4 +18,9 @@ class CreateLink extends Model
         'affilate_link', 'merchent_link', 'filter_by',
     ];
 
+    public function redirectCount()
+    {
+        return $this->hasMany('App\Models\RedirectLinkTrack','linkid', 'id');
+    }
+
 }

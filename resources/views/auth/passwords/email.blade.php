@@ -1,44 +1,43 @@
 @extends('layouts.app')
 
 @section('content')
-<!-- FORGOT PASSWORD FORM -->
-<div class="text-center" style="padding:160px 0">
-    <div class="logo">forgot password</div>
-    <!-- Main Form -->
-    <div class="login-form-1">
-        <form id="forgot-password-form" class="text-left" method="POST" action="{{ url('/admin/forgotpassword') }}">
-            @csrf
-            <div class="etc-login-form">
-                <p>When you fill in your registered email address, you will be sent instructions on how to reset your password.</p>
-            </div>
-            <div class="login-form-main-message"></div>
-            <div class="main-login-form">
-                @if (session('status'))
-                    <div class="alert alert-success" role="alert">
-                        {{ session('status') }}
-                    </div>
-                @endif
-                @if ($errors->has('email'))
-                    <span class="invalid-feedback" role="alert">
-                        <strong>{{ $errors->first('email') }}</strong>
-                    </span>
-                @endif
-                <div class="login-group">
-                    <div class="form-group">
-                        <label for="fp_email" class="sr-only">Email address</label>
-                        <input id="fp_email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required placeholder="email address">
-                    </div>
-                </div>
-                <button type="submit" class="login-button"><i class="fa fa-chevron-right"></i></button>
-            </div>
-            <div class="etc-login-form">
-                <p>already have an account? <a href="{{url('/admin/login')}}">login here</a></p>
-                <p>new user? <a href="{{url('/register')}}">create new account</a></p>
-            </div>
-        </form>
-    </div>
-    <!-- end:Main Form -->
+<div id="login">
+    @if (session('status'))
+        <div class="alert alert-success" role="alert">
+            {{ session('status') }}
+        </div>
+    @endif
+    @if ($errors->has('email'))
+        <span class="invalid-feedback" role="alert">
+            <strong>{{ $errors->first('email') }}</strong>
+        </span>
+    @endif
+   <form method="POST" action="{{ url('/admin/forgotpassword') }}">
+       <fieldset class="clearfix">
+        @csrf
+           <!-- JS because of IE support; better: placeholder="Username" -->
+           <p><span class="fa fa-envelope"></span>
+               <input id="fp_email" type="email" class="{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required placeholder="email address">
+           </p>
+          
+           <!-- JS because of IE support; better: placeholder="Password" -->
+           <div>
+            @if (Route::has('password.request'))
+            <span style="width:48%; text-align:left;  display: inline-block; "><a class="small-text" style="color: #848484;" href="{{url('/admin/login')}}">already have an account? </a></span>
+            @endif
+               <!-- <p>new user? <a href="{{ route('register') }}">create new account</a></p> -->
+               <span style="width:50%; text-align:right;  display: inline-block;"><input type="submit" value="Send"></span>
+           </div>
+       </fieldset>
+       <div class="clearfix"></div>
+   </form>
+   <div class="clearfix"></div>
 </div>
-
+<!-- end login -->
+<div class="logo wow animated flip text-sky" data-wow-delay="0.2s">
+    <img width="80" src="{{URL::asset('/public/images/avatar.jpg')}}">
+    <p>Click<span class="text-orange">Onik</span></p>
+   <div class="clearfix"></div>
+</div>
 
 @endsection
