@@ -1,6 +1,10 @@
 /node_modules
 /public/hot
 /public/storage
+/vendor1
+/phpMyAdmin
+/app2
+/tajinder
 /storage/*.key
 /vendor
 .env
