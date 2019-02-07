@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Validator;
 use App\Models\CreateLink;
 use App\Models\CloakingFilter;
 use App\Models\RedirectLinkTrack;
-use Toastr,URL;
+use Toastr,URL,DB;
 class DashboardController extends Controller
 {
     /**
@@ -72,7 +72,12 @@ class DashboardController extends Controller
     public function linkList()
     {
         $createlink = CreateLink::orderBy('id','DESC')->get();
-        return view('Admin.link_list',['createlinks' => $createlink]);
+        $create_link = array();
+        foreach ($createlink as $link) {
+            $link['click_count'] = RedirectLinkTrack::where('linkid',$link->id)->sum('click_count');
+            array_push($create_link, $link);
+        }
+        return view('Admin.link_list',['createlinks' => $create_link]);
     }
 
     public function deleteLink(Request $request)
@@ -88,6 +93,30 @@ class DashboardController extends Controller
        }
     }
 
+    public function editLink($linkid)
+    {
+        $editLink = CreateLink::find($linkid);
+        $editLink['filter_by'] = explode(',',$editLink->filter_by);
+        $filters = CloakingFilter::get();
+        return view('Admin.edit_link',['editdata' => $editLink,'filters' => $filters]);
+
+    }
+
+    public function updateLink(Request $request)
+    {
+        $input = $request->all();
+        $updateLink = CreateLink::find($input['id']);
+        $updateLink->affilate_link = $input['affilate_link'];
+        $updateLink->merchent_link = $input['merchent_link'];
+        $updateLink->filter_by = implode($input['filters'], ',');
+        if($updateLink->save()){
+            Toastr::success('Link successfully updated', 'Update Link', ["positionClass" => "toast-top-right"]);
+            return redirect('/admin/linkList');
+        }else{
+            Toastr::error('Somthing went wrong!', 'Update Link', ["positionClass" => "toast-top-right"]);
+            return redirect('/admin/editLink/'.$input['id']);
+        }
+    }
     public function addfilterCategory()
     {
         return view('Admin.add_filter_category');
