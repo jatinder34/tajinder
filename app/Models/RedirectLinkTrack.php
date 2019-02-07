@@ -15,6 +15,6 @@ class RedirectLinkTrack extends Model
     protected $table = 'redirect_link_track';
 
     protected $fillable = [
-        'ip','click_count','type','linkid'
+        'ip','click_count','type','linkid','city','country'
     ];
 }

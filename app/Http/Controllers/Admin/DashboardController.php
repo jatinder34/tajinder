@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Validator;
 use App\Models\CreateLink;
 use App\Models\CloakingFilter;
 use App\Models\RedirectLinkTrack;
-use Toastr,URL;
+use Toastr,URL,DB;
 class DashboardController extends Controller
 {
     /**
@@ -72,7 +72,14 @@ class DashboardController extends Controller
     public function linkList()
     {
         $createlink = CreateLink::orderBy('id','DESC')->get();
-        return view('Admin.link_list',['createlinks' => $createlink]);
+        $create_link = array();
+        foreach ($createlink as $link) {
+            $unique = RedirectLinkTrack::where('linkid',$link->id)->distinct('ip')->pluck('ip');
+            $link['uniqueCount'] = count($unique);
+            $link['click_count'] = RedirectLinkTrack::where('linkid',$link->id)->sum('click_count');
+            array_push($create_link, $link);
+        }
+        return view('Admin.link_list',['createlinks' => $create_link]);
     }
 
     public function deleteLink(Request $request)
@@ -88,6 +95,32 @@ class DashboardController extends Controller
        }
     }
 
+    public function editLink($linkid)
+    {
+        $editLink = CreateLink::find($linkid);
+        $editLink['filter_by'] = explode(',',$editLink->filter_by);
+        $filters = CloakingFilter::get();
+        return view('Admin.edit_link',['editdata' => $editLink,'filters' => $filters]);
+
+    }
+
+    public function updateLink(Request $request)
+    {
+        $input = $request->all();
+        $updateLink = CreateLink::find($input['id']);
+        $updateLink->affilate_link = $input['affilate_link'];
+        $updateLink->merchent_link = $input['merchent_link'];
+        if(array_key_exists('filters', $input)){
+            $updateLink->filter_by = implode($input['filters'], ',');
+        }
+        if($updateLink->save()){
+            Toastr::success('Link successfully updated', 'Update Link', ["positionClass" => "toast-top-right"]);
+            return redirect('/admin/linkList');
+        }else{
+            Toastr::error('Somthing went wrong!', 'Update Link', ["positionClass" => "toast-top-right"]);
+            return redirect('/admin/editLink/'.$input['id']);
+        }
+    }
     public function addfilterCategory()
     {
         return view('Admin.add_filter_category');
@@ -101,16 +134,17 @@ class DashboardController extends Controller
         ]);
         if ( $validation->fails() ) {
             if($validation->messages()->first('filter_name')){
-                return array('success'=>false,'message'=>'Filter name is already exist.');
+                Toastr::error('Filter name is already exist.', 'Error', ["positionClass" => "toast-top-right"]);
+                return redirect('/admin/addfilterCategory');
             }
         }else{
             $filter = CloakingFilter::create($input);
             if($filter){
-                $message = array('success'=>true,'message'=>'Filter category add successfully');
-                return json_encode($message);
+                Toastr::success('Filter category add successfully.', 'Success', ["positionClass" => "toast-top-right"]);
+                return redirect('/admin/filterList');
             }else{
-                $message = array('success'=>false,'message'=>'Somthing went wrong, please try again!');
-                return json_encode($message);
+                Toastr::error('Somthing went wrong, please try again!', 'Error', ["positionClass" => "toast-top-right"]);
+                return redirect('/admin/addfilterCategory');
             }
         }
     }
@@ -139,11 +173,11 @@ class DashboardController extends Controller
             $filter = CloakingFilter::find($input['id']);
             $filter->filter_name = $input['filter_name'];
             if($filter->save()){
-                $message = array('success'=>true,'message'=>'Filter category update successfully');
-                return json_encode($message);
+                Toastr::success('Filter category update successfully.', 'Success', ["positionClass" => "toast-top-right"]);
+                return redirect('/admin/filterList');
             }else{
-                $message = array('success'=>false,'message'=>'Somthing went wrong, please try again!');
-                return json_encode($message);
+                Toastr::error('Somthing went wrong, please try again!', 'Error', ["positionClass" => "toast-top-right"]);
+                return redirect('/admin/editfilterCategory/'.$input['id']);
             }
         }
     }
@@ -162,7 +196,7 @@ class DashboardController extends Controller
     }
     public function filterCategoryList()
     {
-        $filters = CloakingFilter::orderBy('id','DESC')->get();
+        $filters = CloakingFilter::orderBy('id','DESC')->paginate(3);
         return view('Admin.filter_list',['filters'=> $filters]);
     }
 }

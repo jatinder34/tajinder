@@ -25,25 +25,33 @@
                       <th scope="col" class="border-0">Affilate link</th>
                       <th scope="col" class="border-0">Merchent link</th>
                       <th scope="col" class="border-0">Click Count</th>
+                      <th scope="col" class="border-0">Unique Count</th>
                       <th scope="col" class="border-0">Redirect Link</th>
                       <th scope="col" class="border-0" style="min-width: 100px;">Action</th>
                     </tr>
                   </thead>
                   <tbody>
-                  	@if(!$createlinks->isEmpty())
+                  	@if(!empty($createlinks))
                   		@php
                   			$i = 1;
                   		@endphp
 	                  	@foreach($createlinks as $links)
 		                    <tr>
 		                      <td>{{$i++}}</td>
-		                      <td class="text-left">{{$links->affilate_link}}</td>
-		                      <td class="text-left">{{$links->merchent_link}}</td>
-		                      <td>0</td>
-		                      <td>{{url('/admin/go')}}/{{$links->id}}</td>
+		                      <td class="text-left">
+                            <a target="_blank" href="{{$links->affilate_link}}">{{$links->affilate_link}}</a>
+                          </td>
+		                      <td class="text-left">
+                            <a target="_blank" href="{{$links->affilate_link}}">{{$links->merchent_link}}</a>
+                          </td>
+                          <td>{{$links->click_count}}</td>
+		                      <td>{{$links->uniqueCount}}</td>
 		                      <td>
-		                      	<a href="{{url('/admin/go')}}/{{$links->id}}"><i class="material-icons notranslate">visibility</i></a>
-		                      	<a href="#"><i class="material-icons notranslate">edit</i></a>
+                            <a target="_blank" href="{{url('/admin/go')}}/{{$links->id}}">{{url('/admin/go')}}/{{$links->id}}</a>
+                          </td>
+		                      <td>
+		                      	<a target="_blank" href="{{url('/admin/go')}}/{{$links->id}}"><i class="material-icons notranslate">visibility</i></a>
+		                      	<a href="{{url('/admin/editLink')}}/{{$links->id}}"><i class="material-icons notranslate">edit</i></a>
 		                      	<a href="javascript:void(0)" data-id="{{$links->id}}" class="deleteLink"><i class="material-icons notranslate">delete</i></a>
 		                      </td>
 		                    </tr>

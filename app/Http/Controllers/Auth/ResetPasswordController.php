@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Mail\ForgotPassword;
 use App\User;
 use Mail;
+use Toastr;
 class ResetPasswordController extends Controller
 {
     /*
@@ -49,9 +50,11 @@ class ResetPasswordController extends Controller
            $user->reset_password = $input['token'];
            $user->save();
             Mail::to($input['email'])->send(new ForgotPassword($input));
-            return redirect('/password/reset')->with('success','Please check your email');
+            Toastr::success('Please check your email.', 'Reset password', ["positionClass" => "toast-top-right"]);
+            return redirect('/password/reset');
        }else{
-        return redirect('/password/reset')->with('error','We did not found your account!');
+        Toastr::success('We did not found your account!', 'Reset password', ["positionClass" => "toast-top-right"]);
+        return redirect('/password/reset');
        }
     }
 
@@ -71,7 +74,8 @@ class ResetPasswordController extends Controller
                     $user->password = bcrypt($input['new_password']);
                     $user->reset_password = null;
                     if($user->save()){
-                        return redirect('/admin/login')->with('success','Password changed successfully.');
+                        Toastr::success('Password changed successfully.', 'Reset password', ["positionClass" => "toast-top-right"]);
+                        return redirect('/admin/login');
                     }
                 }
         }

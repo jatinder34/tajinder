@@ -12,12 +12,13 @@
 	    <!-- End Page Header -->
 	    <!-- Small Stats Blocks -->
 	    <div class="row">
-	    	<form style="width: 100%" method="post" id="add_filter">
+	    	<form style="width: 100%" method="post" action="{{url('/admin/addfilterCategory')}}" id="add_filter">
+	    		@csrf
 		    	<div class="col-lg-12 col-md-12">
 		    	  <!-- Add New Post Form -->
 		    	  <div class="card card-small mb-3">
 		    	    <div class="card-body">
-		    	        <input class="form-control form-control-lg mb-3" type="text" placeholder="Filter category" name="filter_category" id="filter_category" required="">
+		    	        <input class="form-control form-control-lg mb-3" type="text" placeholder="Filter category" name="filter_name" id="filter_category" required="">
 	    	      	</div>
 	    	      	<div class="ml-3 mb-3">
 		    			<button class="btn btn-accent" id="generate_link">

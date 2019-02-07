@@ -7,6 +7,7 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Auth;
 use App\User;
+use Toastr;
 class LoginController extends Controller
 {
     /*
@@ -59,17 +60,21 @@ class LoginController extends Controller
             ]);
 
             if (Auth::attempt($request->only($login_type, 'password'))) {
-               return redirect('/admin/dashboard')->with('success','You are successfully logged in!');
+                Toastr::success('You are successfully logged in!', 'Logged in', ["positionClass" => "toast-top-right"]);
+               return redirect('/admin/dashboard');
             }
-            return redirect('/admin/login')->with('warning','Please enter valid login details!');
+            Toastr::error('Please enter valid login details!', 'Error', ["positionClass" => "toast-top-right"]);
+            return redirect('/admin/login');
         }else {
-            return redirect('/admin/login')->with('warning','We did not found your account!');
+            Toastr::error('We did not found your account!', 'Error', ["positionClass" => "toast-top-right"]);
+            return redirect('/admin/login');
         }
     }
 
     public function logout()
     {
         Auth::logout();
+        Toastr::success('Successfully logged out!', 'Logged out', ["positionClass" => "toast-top-right"]);
         return redirect('/admin/login');
     }
 

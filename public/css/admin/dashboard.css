@@ -35,3 +35,6 @@ span.loader i{
 .text-orange{
     color: #f89321;
 }
+.pagination {
+  padding-left: 60px;
+}

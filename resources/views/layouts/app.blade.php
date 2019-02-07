@@ -13,6 +13,8 @@
     <!--===================================================================================-->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <!--===================================================================================-->
+    <link rel="stylesheet" href="http://cdn.bootcss.com/toastr.js/latest/css/toastr.min.css">
+    <!--===================================================================================-->
     <!------ Include the above in your HEAD tag ---------->
 
     <!-- All the files that are required -->
@@ -45,7 +47,9 @@
     <!--===================================================================================-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.13.1/jquery.validate.min.js"></script>
     <!--===================================================================================-->
+    <script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
+    <!--===================================================================================-->
     <!-- <script src="{{URL::asset('/public/js/admin.js')}}"></script> -->
-
+{!! Toastr::message() !!}
 </body>
 </html>

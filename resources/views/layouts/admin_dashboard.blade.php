@@ -132,59 +132,6 @@
                     }
                 });
             });
-
-            $('#add_filter').on('submit',function(e){
-                e.preventDefault();
-                $('.loader').show();
-                var filter_category = $('#filter_category').val();
-                $.ajax({
-                    type: "POST",
-                    url: "{{url('/admin/addfilterCategory')}}",
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    },
-                    dataType:'json',
-                    data: {
-                        'filter_name':filter_category,
-                    },
-                    success: function(result){
-                        $('.loader').hide();
-                        if(result.success){
-                            toastr.success(result.message, 'Filter', {timeOut: 5000});
-                        }else{
-                            toastr.error(result.message, 'Filter', {timeOut: 5000});
-                        }
-                    }
-                });
-            });
-
-            $('#edit_filter').on('submit',function(e){
-                e.preventDefault();
-                $('.loader').show();
-                var filter_category = $('#filter_category').val();
-                var filter_id = $('#filter_id').val();
-                $.ajax({
-                    type: "POST",
-                    url: "{{url('/admin/editfilterCategory')}}",
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    },
-                    dataType:'json',
-                    data: {
-                        'id':filter_id,
-                        'filter_name':filter_category,
-                    },
-                    success: function(result){
-                        $('.loader').hide();
-                        if(result.success){
-                            toastr.success(result.message, 'Filter', {timeOut: 5000});
-                        }else{
-                            toastr.error(result.message, 'Filter', {timeOut: 5000});
-                        }
-                    }
-                });
-            });
-
             $(document).on('click','.deleteFilter',function(){
                 var filterid = $(this).attr('data-id');
                 var btn = $(this);

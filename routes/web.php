@@ -24,9 +24,11 @@ Route::group(['prefix' => 'admin'], function () {
 	Route::post('/reset-password', 'Auth\ResetPasswordController@setPassword');
 	Route::get('/createLink', 'Admin\DashboardController@createLink');
 	Route::post('/createLink', 'Admin\DashboardController@generateLink');
+	Route::get('/go/{id}', 'Admin\RedirectController@redirectLink');
 	Route::get('/linkList', 'Admin\DashboardController@linkList');
 	Route::post('/deleteLink', 'Admin\DashboardController@deleteLink');
-	Route::get('/go/{id}', 'Admin\RedirectController@redirectLink');
+	Route::get('/editLink/{linkid}', 'Admin\DashboardController@editLink');
+	Route::post('/editLink', 'Admin\DashboardController@updateLink');
 	Route::get('/addfilterCategory', 'Admin\DashboardController@addfilterCategory');
 	Route::post('/addfilterCategory', 'Admin\DashboardController@insertFilter');
 	Route::get('/editfilterCategory/{id}', 'Admin\DashboardController@editfilterCategory');

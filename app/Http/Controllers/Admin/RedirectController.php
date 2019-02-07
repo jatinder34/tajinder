@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Validator;
 use App\Models\CreateLink;
 use App\Models\CloakingFilter;
 use App\Models\RedirectLinkTrack;
-use Toastr,URL;
+use Toastr,URL,Cookie;
 class RedirectController extends Controller
 {
     /**
@@ -18,7 +18,7 @@ class RedirectController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        // $this->middleware('auth');
     }
 
     /**
@@ -26,35 +26,48 @@ class RedirectController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function redirectLink($id)
+    public function redirectLink(Request $request,$id)
     {
-        // $_SERVER["REMOTE_ADDR"];
+        $url = URL::current();
+        Cookie::queue(Cookie::make('redirecturl', $url));
+        $value = $request->cookie('redirecturl');
+        $ip = $_SERVER["REMOTE_ADDR"];
         $createlink = CreateLink::find($id);
-        $createlink['filter_by'] = explode(',', $createlink->filter_by);
-        foreach ($createlink->filter_by as $filter) {
-            $filtername = CloakingFilter::find($filter);
-            if($filtername->filter_name == "Filter by ISP/Carrier")
-            {
-                $this->ISPCarrier($id);
-
-            }elseif($filtername->filter_name == "Filter by IP/IP range")
-            {
-                $this->ip($id);
-
-            }elseif($filtername->filter_name == "Filter by City")
-            {
-                $this->city($id);
-
-            }elseif($filtername->filter_name == "Filter by Country")
-            {
-                $this->country($id);
-
-            }else{
-                $this->country($id);
-            }
-
+        $redirect = RedirectLinkTrack::where('ip',$ip)->where('linkid',$id)->count();
+        if($redirect != 0 || $value == $url){
+            $redirecturl = $createlink->merchent_link;
+        }else{
+            $redirecturl = $createlink->affilate_link;
         }
-        return redirect($createlink->merchent_link);
+        $createlink['filter_by'] = explode(',', $createlink->filter_by);
+        if(count($createlink['filter_by']) == 1){
+            $this->ip($id);
+        }else{
+            foreach ($createlink->filter_by as $filter) {
+                $filtername = CloakingFilter::find($filter);
+                if($filtername->filter_name == "ISP/Carrier")
+                {
+                    $this->ISPCarrier($id);
+
+                }elseif($filtername->filter_name == "IP/IP range")
+                {
+                    $this->ip($id);
+
+                }elseif($filtername->filter_name == "City")
+                {
+                    $this->city($id);
+
+                }elseif($filtername->filter_name == "County")
+                {
+                    $this->country($id);
+
+                }else{
+                    $this->ip($id);
+                }
+
+            }
+        }
+        return redirect($redirecturl);
     }
 
     public function ISPCarrier($linkid)
@@ -71,7 +84,9 @@ class RedirectController extends Controller
                 'ip' => $ip,
                 'click_count' => 1,
                 'type' => 'isp',
-                'linkid' => $linkid
+                'linkid' => $linkid,
+                'city' =>null,
+                'country'=>null 
 
             ];
             if(RedirectLinkTrack::create($input)){
@@ -93,7 +108,9 @@ class RedirectController extends Controller
                 'ip' => $ip,
                 'click_count' => 1,
                 'type' => 'ip',
-                'linkid' => $linkid
+                'linkid' => $linkid,
+                'city' =>null,
+                'country'=>null
 
             ];
             if(RedirectLinkTrack::create($input)){
@@ -111,12 +128,14 @@ class RedirectController extends Controller
             return true;
            }
         }else{
+            $details = json_decode(file_get_contents("http://ipinfo.io/{$ip}"));
             $input = [
                 'ip' => $ip,
                 'click_count' => 1,
                 'type' => 'city',
-                'linkid' => $linkid
-
+                'linkid' => $linkid,
+                'city' =>$details->city,
+                'country'=>null
             ];
             if(RedirectLinkTrack::create($input)){
                 return true;
@@ -126,7 +145,7 @@ class RedirectController extends Controller
 
     public function country($linkid)
     {
-    $ip = $_SERVER["REMOTE_ADDR"];
+        $ip = $_SERVER["REMOTE_ADDR"];
         $track = RedirectLinkTrack::where('ip',$ip)->where('linkid',$linkid)->where('type','country')->get()->first();
         if($track){
            $track->click_count =  $track->click_count + 1;
@@ -134,11 +153,14 @@ class RedirectController extends Controller
             return true;
            }
         }else{
+            $details = json_decode(file_get_contents("http://ipinfo.io/{$ip}"));
             $input = [
                 'ip' => $ip,
                 'click_count' => 1,
                 'type' => 'country',
-                'linkid' => $linkid
+                'linkid' => $linkid,
+                'city' =>null,
+                'country'=>$details->country
 
             ];
             if(RedirectLinkTrack::create($input)){
@@ -161,7 +183,9 @@ class RedirectController extends Controller
                 'ip' => $ip,
                 'click_count' => 1,
                 'type' => null,
-                'linkid' => $linkid
+                'linkid' => $linkid,
+                'city' =>null,
+                'country'=>null
 
             ];
             if(RedirectLinkTrack::create($input)){

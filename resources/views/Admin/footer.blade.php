@@ -16,7 +16,7 @@
 	    <a class="nav-link" href="#">Blog</a>
 	  </li>
 	</ul> -->
-	<span class="copyright ml-auto my-auto mr-2">Copyright © 2019
-	  <a href="javascript:void(0)" rel="nofollow">Click<span class="text-orange">Onik</span></a>
+	<span class="copyright ml-auto my-auto mr-2">Copyright © {{date('Y')}}
+	  <a href="javascript:void(0)" rel="nofollow">Claim<span class="text-orange">cash</span></a>
 	</span>
 </footer>

@@ -29,7 +29,10 @@
                   <tbody>
                     @if(!$filters->isEmpty())
                       @php
-                        $i = 1;
+                          $i = 1;
+                          if(isset($_GET['page'])){
+                            $i =  $_GET['page']*3 - 2;
+                          }
                       @endphp
                       @foreach($filters as $filter)  
                         <tr>
@@ -51,6 +54,7 @@
                   </tbody>
                 </table>
               </div>
+              {{$filters->links()}}
             </div>
           </div>
         </div>

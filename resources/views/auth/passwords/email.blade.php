@@ -35,8 +35,8 @@
 </div>
 <!-- end login -->
 <div class="logo wow animated flip text-sky" data-wow-delay="0.2s">
-    <img width="80" src="{{URL::asset('/public/images/avatar.jpg')}}">
-    <p>Click<span class="text-orange">Onik</span></p>
+    <img width="80" src="{{URL::asset('/public/images/Logo.png')}}">
+    <!-- <p>Click<span class="text-orange">Onik</span></p> -->
    <div class="clearfix"></div>
 </div>
 
