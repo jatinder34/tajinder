@@ -30,7 +30,7 @@
                     </tr>
                   </thead>
                   <tbody>
-                  	@if(!$createlinks->isEmpty())
+                  	@if(!empty($createlinks))
                   		@php
                   			$i = 1;
                   		@endphp
@@ -39,11 +39,11 @@
 		                      <td>{{$i++}}</td>
 		                      <td class="text-left">{{$links->affilate_link}}</td>
 		                      <td class="text-left">{{$links->merchent_link}}</td>
-		                      <td>0</td>
+		                      <td>{{$links->click_count}}</td>
 		                      <td>{{url('/admin/go')}}/{{$links->id}}</td>
 		                      <td>
 		                      	<a href="{{url('/admin/go')}}/{{$links->id}}"><i class="material-icons notranslate">visibility</i></a>
-		                      	<a href="#"><i class="material-icons notranslate">edit</i></a>
+		                      	<a href="{{url('/admin/editLink')}}/{{$links->id}}"><i class="material-icons notranslate">edit</i></a>
 		                      	<a href="javascript:void(0)" data-id="{{$links->id}}" class="deleteLink"><i class="material-icons notranslate">delete</i></a>
 		                      </td>
 		                    </tr>

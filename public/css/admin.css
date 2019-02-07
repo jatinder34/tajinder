@@ -6,12 +6,9 @@
 
 
 div.main{
-        background: #fff;
+    background: #edeaea;
     height: calc(100vh);
     width: 100%;
-    background-image: url('./../images/cool-background1.png');
-    background-repeat: no-repeat;
-    background-size: cover;
 }
 
 [class*="fontawesome-"]:before {
