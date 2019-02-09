@@ -19,13 +19,86 @@
 		    	    <div class="card-body">
 		    	        <input class="form-control form-control-lg mb-3" type="url" placeholder="Affilate Link" name="affilate_link" id="affilate_link" required="">
 		    	        <input class="form-control form-control-lg mb-3" type="url" placeholder="Merchent Link" name="merchent_link" id="merchent_link" required="">
-		    	        <select id="filter_category" data-placeholder="Begin typing a name to filter..." name="filters" class="chosen-select form-control form-control-lg mb-3" multiple >
+		    	        <!--select id="filter_category" data-placeholder="Begin typing a name to filter..." name="filters" class="chosen-select form-control form-control-lg mb-3" multiple >
 		    	          @if(!$filters->isEmpty())
 		    	          	@foreach($filters as $filter)
 		    	          		<option value="{{$filter->id}}">{{$filter->filter_name}}</option>
 		    	          	@endforeach
 		    	          @endif
-		    	        </select>
+		    	        </select-->
+		    	    	<div class="card-body">Categories</div>
+		    	    	<div class="card-body">
+		    	    		<label for="male">Male</label>
+		    	    		<select name="cars">
+							  <option value="volvo">Volvo</option>
+							  <option value="saab">Saab</option>
+							  <option value="opel">Opel</option>
+							  <option value="audi">Audi</option>
+							</select>
+		    	    	</div>
+		    	    	<div class="card-body">
+		    	    		<label for="male">Male</label>
+		    	    		<select name="cars">
+							  <option value="volvo">Volvo</option>
+							  <option value="saab">Saab</option>
+							  <option value="opel">Opel</option>
+							  <option value="audi">Audi</option>
+							</select>
+		    	    	</div>
+		    	    	<div class="card-body">
+		    	    		<label for="male">Male</label>
+		    	    		<select name="cars">
+							  <option value="volvo">Volvo</option>
+							  <option value="saab">Saab</option>
+							  <option value="opel">Opel</option>
+							  <option value="audi">Audi</option>
+							</select>
+		    	    	</div>
+		    	    	<div class="card-body">
+		    	    		<label for="male">Male</label>
+		    	    		<select name="cars">
+							  <option value="volvo">Volvo</option>
+							  <option value="saab">Saab</option>
+							  <option value="opel">Opel</option>
+							  <option value="audi">Audi</option>
+							</select>
+		    	    	</div>
+		    	    	<div class="card-body">
+		    	    		<label for="male">Male</label>
+		    	    		<select name="cars">
+							  <option value="volvo">Volvo</option>
+							  <option value="saab">Saab</option>
+							  <option value="opel">Opel</option>
+							  <option value="audi">Audi</option>
+							</select>
+		    	    	</div>
+		    	    	<div class="card-body">
+		    	    		<label for="male">Male</label>
+		    	    		<select name="cars">
+							  <option value="volvo">Volvo</option>
+							  <option value="saab">Saab</option>
+							  <option value="opel">Opel</option>
+							  <option value="audi">Audi</option>
+							</select>
+		    	    	</div>
+		    	    	<div class="card-body">
+		    	    		<label for="male">Male</label>
+		    	    		<select name="cars">
+							  <option value="volvo">Volvo</option>
+							  <option value="saab">Saab</option>
+							  <option value="opel">Opel</option>
+							  <option value="audi">Audi</option>
+							</select>
+		    	    	</div>
+		    	    	<div class="card-body">
+		    	    		<label for="male">Male</label>
+		    	    		<select name="cars">
+							  <option value="volvo">Volvo</option>
+							  <option value="saab">Saab</option>
+							  <option value="opel">Opel</option>
+							  <option value="audi">Audi</option>
+							</select>
+		    	    	</div>
 		    	        <input class="form-control form-control-lg mb-3" type="url" placeholder="Your link will appear here.." id="generated_link">
                         
 	    	      	</div>
