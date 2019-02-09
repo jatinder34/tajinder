@@ -14,7 +14,7 @@ class AddDomainTable extends Migration
     public function up()
     {
         Schema::table('create_links', function (Blueprint $table) {
-            //
+            $table->string('domain')->nullable();
         });
     }
 
@@ -26,7 +26,7 @@ class AddDomainTable extends Migration
     public function down()
     {
         Schema::table('create_links', function (Blueprint $table) {
-            //
+            $table->dropColumn('domain');
         });
     }
 }
