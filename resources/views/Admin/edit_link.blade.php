@@ -112,12 +112,8 @@
 		    	    	<div class="card-body">
 		    	    		<label for="male">Countries</label>
 		    	    		<select class="form-control form-control-lg mb-3" id="country" name="country">
-							    <?php if($linkfilterType6){  ?>
-									<option <?php if($linkfilterType6->parameters=""){ echo 'selected';} ?> value="">Select Country</option>
-								<?php }else{ ?>
-									<option value="">Select Country</option>
-								<?php } ?>
-							    @foreach($countries as $country)
+							    <option value="">Select Country</option>
+								@foreach($countries as $country)
 							    	<?php if($linkfilterType6){  ?>
 		    	          				<option <?php if($linkfilterType6->parameters=$country->country_name){ echo 'selected';} ?> value="{{$country->country_name}}">{{$country->country_name}}</option>
 		    	          			<?php }else{ ?>
