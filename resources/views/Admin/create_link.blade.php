@@ -36,7 +36,7 @@
 		    	    	</div>
 		    	    	<div class="card-body">
 		    	    		<label for="male">ISP</label>
-		    	    		<select class="form-control form-control-lg mb-3" multiple name="isp">
+		    	    		<select class="form-control form-control-lg mb-3" name="isp">
 							  <option value="">Select ISP</option>
 							  <option value="airtel">Airtel</option>
 							  <option value="vodafone">Vodafone</option>
