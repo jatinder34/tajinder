@@ -16,7 +16,7 @@
 		    	<div class="col-lg-12 col-md-12">
 		    	  <!-- Add New Post Form -->
 		    	  <div class="card card-small mb-3">
-		    	    <!--div class="card-body">
+		    	    <div class="card-body">
 		    	        <input class="form-control form-control-lg mb-3" type="url" placeholder="Affilate Link" name="affilate_link" id="affilate_link" required="">
 		    	        <input class="form-control form-control-lg mb-3" type="url" placeholder="Merchent Link" name="merchent_link" id="merchent_link" required="">
 		    	        <select id="filter_category" data-placeholder="Begin typing a name to filter..." name="filters" class="chosen-select form-control form-control-lg mb-3" multiple >
@@ -28,14 +28,7 @@
 		    	        </select>
 		    	        <input class="form-control form-control-lg mb-3" type="url" placeholder="Your link will appear here.." id="generated_link">
                         
-	    	      	</div-->
-	    	      	<div class="form-group">
-                            <label for="password" class="col-md-4 control-label">Senha</label>
-
-                            <div class="col-md-6">
-                                <input type="password" class="form-control" name="password_confirmation" data-validation="length" data-validation-length="min6">
-                            </div>
-                        </div>
+	    	      	</div>
 	    	      	<div class="ml-3 mb-3">
 		    			<button class="btn btn-accent" id="generate_link">
 		    	            <i class="material-icons">file_copy</i> Create link
