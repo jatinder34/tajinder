@@ -10,7 +10,7 @@
 	      </div>
 	    </div>
 	    <!-- End Page Header -->
-	    @if($filter)
+	    @if($domain)
 		    <!-- Small Stats Blocks -->
 		    <div class="row">
 		    	<form style="width: 100%" method="post" id="edit_domain" action="{{url('/admin/editDomain')}}">
