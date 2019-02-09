@@ -77,7 +77,15 @@ class RedirectController extends Controller
     {
         $url = URL::current();
         $ip = $_SERVER["REMOTE_ADDR"];
-        print_R($ip);exit;
+        //print_R($ip);exit;
+
+        $createlink = CreateLink::find($id);
+        $linkfilter = LinkFilter::where('link_id',$createlink->id)->get();
+        if(count($linkfilter)>0){
+            //$redirecturl = $createlink->merchent_link;
+        }else{
+            $redirecturl = $createlink->affilate_link;
+        }
         return redirect($redirecturl);
     }
 
