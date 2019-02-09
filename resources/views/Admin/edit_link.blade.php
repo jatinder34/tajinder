@@ -101,19 +101,23 @@
 							  <option <?php if($linkfilterType5->parameters="iOS"){echo 'selected';} ?> value="iOS">iOS</option>
 							  <option <?php if($linkfilterType5->parameters="Android"){echo 'selected';} ?> value="Android">Android</option>
 							  <option <?php if($linkfilterType5->parameters="desktop"){echo 'selected';} ?> value="desktop">Desktop</option>
-							</select>
 							<?php }else{ ?>
 							  <option value="">Select Device Type</option>
 							  <option value="iOS">iOS</option>
 							  <option value="Android">Android</option>
 							  <option value="desktop">Desktop</option>
 							<?php } ?>
+							</select>
 		    	    	</div>
 		    	    	<div class="card-body">
 		    	    		<label for="male">Countries</label>
 		    	    		<select class="form-control form-control-lg mb-3" id="country" name="country">
-							    <option value="">Select Country</option>
-								@foreach($countries as $country)
+							    <?php if($linkfilterType6){  ?>
+									<option <?php if($linkfilterType6->parameters=""){ echo 'selected';} ?> value="">Select Country</option>
+								<?php }else{ ?>
+									<option value="">Select Country</option>
+								<?php } ?>
+							    @foreach($countries as $country)
 							    	<?php if($linkfilterType6){  ?>
 		    	          				<option <?php if($linkfilterType6->parameters=$country->country_name){ echo 'selected';} ?> value="{{$country->country_name}}">{{$country->country_name}}</option>
 		    	          			<?php }else{ ?>
