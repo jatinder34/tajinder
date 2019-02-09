@@ -146,7 +146,7 @@ class DashboardController extends Controller
     public function editLink($linkid)
     {
         $editLink = CreateLink::find($linkid);
-        print_r($editLink);exit;
+        //print_r($editLink);exit;
         $linkfilterType1 = LinkFilter::where('link_id',$linkid)->where('type',1)->first();
         $linkfilterType2 = LinkFilter::where('link_id',$linkid)->where('type',2)->first();
         $linkfilterType3 = LinkFilter::where('link_id',$linkid)->where('type',3)->first();
