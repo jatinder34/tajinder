@@ -37,8 +37,9 @@ class DashboardController extends Controller
     {
         $filters = CloakingFilter::get();
         $country = Country::get();
+        $domain = Domain::get();
         
-        return view('Admin.create_link',['filters' => $filters,'countries' => $country]);
+        return view('Admin.create_link',['domain' => $domain,'filters' => $filters,'countries' => $country]);
     }
 
     public function generateLink(Request $request)
@@ -56,11 +57,14 @@ class DashboardController extends Controller
                 return array('success'=>false,'message'=>'Link already exist.');
             }
         }else{
+            print_R($input);exit;
+        /*
             if(array_key_exists('filter_by', $input)){
                 $input['filter_by'] = implode(',', $input['filter_by']);
             }else{
                 $input['filter_by'] = null;
-            }
+            } 
+        */
             $createlink = CreateLink::create($input);
             if($createlink){
                 $link = URL::to('/admin/go').'/'.$createlink->id;

@@ -86,6 +86,12 @@
 		    	          		@endforeach
 							</select>
 		    	    	</div>
+		    	    	<select class="form-control form-control-lg mb-3" required name="domain">
+		    	    			<option value="">Select Domain</option>
+							@foreach($domain as $dom)
+		    	          		<option value="{{$dom->name}}">{{$dom->name}}</option>
+		    	          	@endforeach
+						</select>
 		    	        <input class="form-control form-control-lg mb-3" type="url" placeholder="Your link will appear here.." id="generated_link">
                         
 	    	      	</div>
