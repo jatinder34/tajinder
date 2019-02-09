@@ -26,16 +26,7 @@
 		    	          	@endforeach
 		    	          @endif
 		    	        </select-->
-
-		    	        1) Ip => ( done )
-	2) Country => ( done )
-	3) ISP => ( done )
-	4) Browser =>  ( done )
-	5) Connection Type => Mobile/Web ( done )
-	6) OS => mac/window/Ubuntu
-	7) DevicetTYpe => ios/android/
-
-		    	    	<div class="card-body">Filters</div>
+		    	        <div class="card-body">Filters</div>
 		    	    	<div class="card-body">
 		    	    		<label for="male">IP</label>
 		    	    		<select class="form-control form-control-lg mb-3" name="ip">
@@ -59,43 +50,37 @@
 							</select>
 		    	    	</div>
 		    	    	<div class="card-body">
-		    	    		<label for="male">Male</label>
-		    	    		<select class="form-control form-control-lg mb-3" name="cars">
-							  <option value="volvo">Volvo</option>
-							  <option value="saab">Saab</option>
-							  <option value="opel">Opel</option>
-							  <option value="audi">Audi</option>
+		    	    		<label for="male">Browser</label>
+		    	    		<select class="form-control form-control-lg mb-3" name="browser">
+		    	    		  <option value="safari">Safari</option>
+							  <option value="chrome">chrome</option>
+							  <option value="mozilla">Mozilla</option>
 							</select>
 		    	    	</div>
 		    	    	<div class="card-body">
-		    	    		<label for="male">Male</label>
-		    	    		<select class="form-control form-control-lg mb-3" name="cars">
-							  <option value="volvo">Volvo</option>
-							  <option value="saab">Saab</option>
-							  <option value="opel">Opel</option>
-							  <option value="audi">Audi</option>
+		    	    		<label for="male">OS</label>
+		    	    		<select class="form-control form-control-lg mb-3" name="os">
+							  <option value="window">Window</option>
+							  <option value="mac">Mac</option>
+							  <option value="ubuntu">Ubuntu</option>
 							</select>
 		    	    	</div>
 		    	    	<div class="card-body">
-		    	    		<label for="male">Male</label>
-		    	    		<select class="form-control form-control-lg mb-3" name="cars">
-							  <option value="volvo">Volvo</option>
-							  <option value="saab">Saab</option>
-							  <option value="opel">Opel</option>
-							  <option value="audi">Audi</option>
+		    	    		<label for="male">Device Type</label>
+		    	    		<select class="form-control form-control-lg mb-3" name="devicetype">
+							  <option value="iOS">iOS</option>
+							  <option value="Android">Android</option>
+							  <option value="desktop">Desktop</option>
 							</select>
 		    	    	</div>
 		    	    	<div class="card-body">
-		    	    		<label for="male">Male</label>
-		    	    		<select class="form-control form-control-lg mb-3" name="cars">
-							  <option value="volvo">Volvo</option>
-							  <option value="saab">Saab</option>
-							  <option value="opel">Opel</option>
-							  <option value="audi">Audi</option>
+		    	    		<label for="male">Countries</label>
+		    	    		<select class="form-control form-control-lg mb-3" name="country">
+							    @foreach($countries as $country)
+		    	          			<option value="{{$country->country_name}}">{{$country->country_name}}</option>
+		    	          		@endforeach
 							</select>
 		    	    	</div>
-		    	    	
-		    	    	
 		    	        <input class="form-control form-control-lg mb-3" type="url" placeholder="Your link will appear here.." id="generated_link">
                         
 	    	      	</div>

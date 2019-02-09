@@ -9,6 +9,7 @@ use App\Models\CreateLink;
 use App\Models\CloakingFilter;
 use App\Models\RedirectLinkTrack;
 use App\Models\Domain;
+use App\Models\Country;
 use Toastr,URL,DB;
 class DashboardController extends Controller
 {
@@ -35,7 +36,9 @@ class DashboardController extends Controller
     public function createLink()
     {
         $filters = CloakingFilter::get();
-        return view('Admin.create_link',['filters' => $filters]);
+        $country = Country::get();
+        
+        return view('Admin.create_link',['filters' => $filters,'countries' => $country]);
     }
 
     public function generateLink(Request $request)
