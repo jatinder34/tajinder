@@ -26,23 +26,36 @@
 		    	          	@endforeach
 		    	          @endif
 		    	        </select-->
-		    	    	<div class="card-body">Categories</div>
+
+		    	        1) Ip => ( done )
+	2) Country => ( done )
+	3) ISP => ( done )
+	4) Browser =>  ( done )
+	5) Connection Type => Mobile/Web ( done )
+	6) OS => mac/window/Ubuntu
+	7) DevicetTYpe => ios/android/
+
+		    	    	<div class="card-body">Filters</div>
 		    	    	<div class="card-body">
-		    	    		<label for="male">Male</label>
-		    	    		<select class="form-control form-control-lg mb-3" name="cars">
-							  <option value="volvo">Volvo</option>
-							  <option value="saab">Saab</option>
-							  <option value="opel">Opel</option>
-							  <option value="audi">Audi</option>
+		    	    		<label for="male">IP</label>
+		    	    		<select class="form-control form-control-lg mb-3" name="ip">
+							  <option selected value="0">No</option>
+							  <option value="1">Yes</option>
 							</select>
 		    	    	</div>
 		    	    	<div class="card-body">
-		    	    		<label for="male">Male</label>
-		    	    		<select class="form-control form-control-lg mb-3" name="cars">
-							  <option value="volvo">Volvo</option>
-							  <option value="saab">Saab</option>
-							  <option value="opel">Opel</option>
-							  <option value="audi">Audi</option>
+		    	    		<label for="male">ISP</label>
+		    	    		<select class="form-control form-control-lg mb-3" multiple name="isp">
+							  <option value="airtel">Airtel</option>
+							  <option value="vodafone">Vodafone</option>
+							  <option value="idea">Idea Cellular</option>
+							  <option value="reliance">Reliance Communications</option>
+							  <option value="bsnl">BSNL</option>
+							  <option value="aircel">Aircel</option>
+							  <option value="tata">Tata Teleservices</option>
+							  <option value="mtnl">MTNL</option>
+							  <option value="videocon">Videocon</option>
+							  <option value="connect">Connect</option>
 							</select>
 		    	    	</div>
 		    	    	<div class="card-body">
