@@ -164,6 +164,7 @@ class DashboardController extends Controller
         $updateLink = CreateLink::find($input['id']);
         $updateLink->affilate_link = $input['affilate_link'];
         $updateLink->merchent_link = $input['merchent_link'];
+        $updateLink->domain = $input['domain'];
         if($updateLink->save()){
             Toastr::success('Link successfully updated', 'Update Link', ["positionClass" => "toast-top-right"]);
 
