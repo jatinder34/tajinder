@@ -26,7 +26,7 @@
 		    	    	<div class="card-body">
 		    	    		<label for="male">IP</label>
 		    	    		<select class="form-control form-control-lg mb-3" id="ip" name="ip">
-		    	    		  <?php if($linkfilterType1){ $sel1="selected";$sel=""; }else{ $sel="selected";$sel1="selected";} ?> 
+		    	    		  <?php if($linkfilterType1){ $sel1="selected";$sel=""; }else{ $sel="selected";$sel1="";} ?> 
 							  <option {{$sel}} value="0">No</option>
 							  <option {{$sel1}} value="1">Yes</option>
 							</select>
