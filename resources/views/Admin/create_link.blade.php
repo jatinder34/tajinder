@@ -37,6 +37,7 @@
 		    	    	<div class="card-body">
 		    	    		<label for="male">ISP</label>
 		    	    		<select class="form-control form-control-lg mb-3" multiple name="isp">
+							  <option value="">ISP</option>
 							  <option value="airtel">Airtel</option>
 							  <option value="vodafone">Vodafone</option>
 							  <option value="idea">Idea Cellular</option>
@@ -52,6 +53,7 @@
 		    	    	<div class="card-body">
 		    	    		<label for="male">Browser</label>
 		    	    		<select class="form-control form-control-lg mb-3" name="browser">
+		    	    		  <option value="">Browser</option>
 		    	    		  <option value="safari">Safari</option>
 							  <option value="chrome">chrome</option>
 							  <option value="mozilla">Mozilla</option>
@@ -60,6 +62,7 @@
 		    	    	<div class="card-body">
 		    	    		<label for="male">OS</label>
 		    	    		<select class="form-control form-control-lg mb-3" name="os">
+		    	    		  <option value="">OS</option>
 							  <option value="window">Window</option>
 							  <option value="mac">Mac</option>
 							  <option value="ubuntu">Ubuntu</option>
@@ -68,6 +71,7 @@
 		    	    	<div class="card-body">
 		    	    		<label for="male">Device Type</label>
 		    	    		<select class="form-control form-control-lg mb-3" name="devicetype">
+		    	    		  <option value="">Device Type</option>
 							  <option value="iOS">iOS</option>
 							  <option value="Android">Android</option>
 							  <option value="desktop">Desktop</option>
@@ -76,6 +80,7 @@
 		    	    	<div class="card-body">
 		    	    		<label for="male">Countries</label>
 		    	    		<select class="form-control form-control-lg mb-3" name="country">
+		    	    			<option value="">Select Country</option>
 							    @foreach($countries as $country)
 		    	          			<option value="{{$country->country_name}}">{{$country->country_name}}</option>
 		    	          		@endforeach
