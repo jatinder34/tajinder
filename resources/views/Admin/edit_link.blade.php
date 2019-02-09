@@ -36,17 +36,17 @@
 	    	    		<label for="male">ISP</label>
 	    	    		<select class="form-control form-control-lg mb-3" id="isp" name="isp">
 	    	    		<?php if($linkfilterType2){  ?>
-							  <option <?php if($linkfilterType2->parameters==""){echo 'selected';} ?> value="">Select ISP</option>
-							  <option <?php if($linkfilterType2->parameters=="airtel"){echo 'selected';} ?> value="airtel">Airtel</option>
-							  <option <?php if($linkfilterType2->parameters=="vodafone"){echo 'selected';} ?> value="vodafone">Vodafone</option>
-							  <option <?php if($linkfilterType2->parameters=="idea"){echo 'selected';} ?> value="idea">Idea Cellular</option>
-							  <option <?php if($linkfilterType2->parameters=="reliance"){echo 'selected';} ?> value="reliance">Reliance Communications</option>
-							  <option <?php if($linkfilterType2->parameters=="bsnl"){echo 'selected';} ?> value="bsnl">BSNL</option>
-							  <option <?php if($linkfilterType2->parameters=="aircel"){echo 'selected';} ?> value="aircel">Aircel</option>
-							  <option <?php if($linkfilterType2->parameters=="tata"){echo 'selected';} ?> value="tata">Tata Teleservices</option>
-							  <option <?php if($linkfilterType2->parameters=="mtnl"){echo 'selected';} ?> value="mtnl">MTNL</option>
-							  <option <?php if($linkfilterType2->parameters=="videocon"){echo 'selected';} ?> value="videocon">Videocon</option>
-							  <option <?php if($linkfilterType2->parameters=="connect"){echo 'selected';} ?> value="connect">Connect</option>
+							  <option <?php if($linkfilterType2->parameter==""){echo 'selected';} ?> value="">Select ISP</option>
+							  <option <?php if($linkfilterType2->parameter=="airtel"){echo 'selected';} ?> value="airtel">Airtel</option>
+							  <option <?php if($linkfilterType2->parameter=="vodafone"){echo 'selected';} ?> value="vodafone">Vodafone</option>
+							  <option <?php if($linkfilterType2->parameter=="idea"){echo 'selected';} ?> value="idea">Idea Cellular</option>
+							  <option <?php if($linkfilterType2->parameter=="reliance"){echo 'selected';} ?> value="reliance">Reliance Communications</option>
+							  <option <?php if($linkfilterType2->parameter=="bsnl"){echo 'selected';} ?> value="bsnl">BSNL</option>
+							  <option <?php if($linkfilterType2->parameter=="aircel"){echo 'selected';} ?> value="aircel">Aircel</option>
+							  <option <?php if($linkfilterType2->parameter=="tata"){echo 'selected';} ?> value="tata">Tata Teleservices</option>
+							  <option <?php if($linkfilterType2->parameter=="mtnl"){echo 'selected';} ?> value="mtnl">MTNL</option>
+							  <option <?php if($linkfilterType2->parameter=="videocon"){echo 'selected';} ?> value="videocon">Videocon</option>
+							  <option <?php if($linkfilterType2->parameter=="connect"){echo 'selected';} ?> value="connect">Connect</option>
 						<?php }else{ ?>
 							  <option value="">Select ISP</option>
 							  <option value="airtel">Airtel</option>
@@ -65,10 +65,10 @@
 	    	    		<label for="male">Browser</label>
 	    	    		<select class="form-control form-control-lg mb-3" id="browser" name="browser">
 	    	    			<?php if($linkfilterType3){  ?>
-		    	    		  	<option <?php if($linkfilterType3->parameters==""){echo 'selected';} ?> value="">Select Browser</option>
-		    	    		  	<option <?php if($linkfilterType3->parameters=="safari"){echo 'selected';} ?> value="safari">Safari</option>
-							  	<option <?php if($linkfilterType3->parameters=="chrome"){echo 'selected';} ?> value="chrome">chrome</option>
-							  	<option <?php if($linkfilterType3->parameters=="mozilla"){echo 'selected';} ?> value="mozilla">Mozilla</option>
+		    	    		  	<option <?php if($linkfilterType3->parameter==""){echo 'selected';} ?> value="">Select Browser</option>
+		    	    		  	<option <?php if($linkfilterType3->parameter=="safari"){echo 'selected';} ?> value="safari">Safari</option>
+							  	<option <?php if($linkfilterType3->parameter=="chrome"){echo 'selected';} ?> value="chrome">chrome</option>
+							  	<option <?php if($linkfilterType3->parameter=="mozilla"){echo 'selected';} ?> value="mozilla">Mozilla</option>
 							<?php }else{ ?>
 								<option value="">Select Browser</option>
 		    	    		  	<option value="safari">Safari</option>
@@ -80,10 +80,10 @@
 	    	    		<label for="male">OS</label>
 	    	    		<select class="form-control form-control-lg mb-3" id="os" name="os">
 	    	    		    <?php if($linkfilterType4){  ?>
-		    	    		  <option <?php if($linkfilterType4->parameters==""){echo 'selected';} ?> value="">Select OS</option>
-							  <option <?php if($linkfilterType4->parameters=="window"){echo 'selected';} ?> value="window">Window</option>
-							  <option <?php if($linkfilterType4->parameters=="mac"){echo 'selected';} ?> value="mac">Mac</option>
-							  <option <?php if($linkfilterType4->parameters=="ubuntu"){echo 'selected';} ?> value="ubuntu">Ubuntu</option>
+		    	    		  <option <?php if($linkfilterType4->parameter==""){echo 'selected';} ?> value="">Select OS</option>
+							  <option <?php if($linkfilterType4->parameter=="window"){echo 'selected';} ?> value="window">Window</option>
+							  <option <?php if($linkfilterType4->parameter=="mac"){echo 'selected';} ?> value="mac">Mac</option>
+							  <option <?php if($linkfilterType4->parameter=="ubuntu"){echo 'selected';} ?> value="ubuntu">Ubuntu</option>
 							<?php }else{ ?>
 							  <option value="">Select OS</option>
 							  <option value="window">Window</option>
@@ -95,10 +95,10 @@
 	    	    		<label for="male">Device Type</label>
 	    	    		<select class="form-control form-control-lg mb-3" id="devicetype" name="devicetype">
 	    	    		<?php if($linkfilterType5){  ?>
-	    	    		  <option <?php if($linkfilterType5->parameters==""){echo 'selected';} ?> value="">Select Device Type</option>
-						  <option <?php if($linkfilterType5->parameters=="iOS"){echo 'selected';} ?> value="iOS">iOS</option>
-						  <option <?php if($linkfilterType5->parameters=="Android"){echo 'selected';} ?> value="Android">Android</option>
-						  <option <?php if($linkfilterType5->parameters=="desktop"){echo 'selected';} ?> value="desktop">Desktop</option>
+	    	    		  <option <?php if($linkfilterType5->parameter==""){echo 'selected';} ?> value="">Select Device Type</option>
+						  <option <?php if($linkfilterType5->parameter=="iOS"){echo 'selected';} ?> value="iOS">iOS</option>
+						  <option <?php if($linkfilterType5->parameter=="Android"){echo 'selected';} ?> value="Android">Android</option>
+						  <option <?php if($linkfilterType5->parameter=="desktop"){echo 'selected';} ?> value="desktop">Desktop</option>
 						<?php }else{ ?>
 						  <option value="">Select Device Type</option>
 						  <option value="iOS">iOS</option>
@@ -110,13 +110,13 @@
 	    	    		<label for="male">Countries</label>
 	    	    		<select class="form-control form-control-lg mb-3" id="country" name="country">
 						    <?php if($linkfilterType6){  ?>
-								<option <?php if($linkfilterType6->parameters==""){ echo 'selected';} ?> value="">Select Country</option>
+								<option <?php if($linkfilterType6->parameter==""){ echo 'selected';} ?> value="">Select Country</option>
 							<?php }else{ ?>
 								<option value="">Select Country</option>
 							<?php } ?>
 						    @foreach($countries as $country)
 						    	<?php if($linkfilterType6){  ?>
-	    	          				<option <?php if($linkfilterType6->parameters==$country->country_name){ echo 'selected';} ?> value="{{$country->country_name}}">{{$country->country_name}}</option>
+	    	          				<option <?php if($linkfilterType6->parameter==$country->country_name){ echo 'selected';} ?> value="{{$country->country_name}}">{{$country->country_name}}</option>
 	    	          			<?php }else{ ?>
 	    	          				<option value="{{$country->country_name}}">{{$country->country_name}}</option>
 	    	          			<?php } ?>
