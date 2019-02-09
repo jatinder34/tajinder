@@ -127,10 +127,11 @@
 							</select>
 		    	    	</div>
 		    	    	<select class="form-control form-control-lg mb-3" required id="domain" name="domain">
-		    	    		<option value="">Select Domain</option>
+		    	    		<option value="{{$editdata->merchent_link}}">{{$editdata->merchent_link}}</option>
+		    	    		<!--option value="">Select Domain</option>
 							@foreach($domain as $dom)
 		    	          		<option <?php if($editdata->merchent_link==$dom->name){ echo 'selected'; } ?>value="{{$dom->name}}">{{$dom->name}}</option>
-		    	          	@endforeach
+		    	          	@endforeach -->
 						</select>
 		    	        <input class="form-control form-control-lg mb-3" type="url" placeholder="Your link will appear here.." id="generated_link" value="{{url('/admin/go')}}/{{$editdata->id}}">
                         <input type="hidden" name="id" value="{{$editdata->id}}">
