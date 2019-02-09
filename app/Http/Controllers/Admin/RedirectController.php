@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Validator;
 use App\Models\CreateLink;
 use App\Models\CloakingFilter;
 use App\Models\RedirectLinkTrack;
+use App\Models\LinkFilter;
 use Toastr,URL,Cookie;
 class RedirectController extends Controller
 {
@@ -26,7 +27,7 @@ class RedirectController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function redirectLink(Request $request,$id)
+    /*public function redirectLink(Request $request,$id)
     {
         $url = URL::current();
         Cookie::queue(Cookie::make('redirecturl', $url));
@@ -67,6 +68,15 @@ class RedirectController extends Controller
 
             }
         }
+        return redirect($redirecturl);
+    }
+
+    */
+
+    public function redirectLink(Request $request,$id)
+    {
+        $url = URL::current();
+        print_R($url);exit;
         return redirect($redirecturl);
     }
 
