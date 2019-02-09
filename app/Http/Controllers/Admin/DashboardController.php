@@ -71,7 +71,7 @@ class DashboardController extends Controller
 
     public function linkList()
     {
-        $createlink = CreateLink::orderBy('id','DESC')->get();
+     /* $createlink = CreateLink::orderBy('id','DESC')->get();
         $create_link = array();
         foreach ($createlink as $link) {
             $unique = RedirectLinkTrack::where('linkid',$link->id)->distinct('ip')->pluck('ip');
@@ -79,7 +79,16 @@ class DashboardController extends Controller
             $link['click_count'] = RedirectLinkTrack::where('linkid',$link->id)->sum('click_count');
             array_push($create_link, $link);
         }
-        return view('Admin.link_list',['createlinks' => $create_link]);
+      */
+        $limit=10;
+        $createlink = CreateLink::orderBy('id','DESC')->paginate($limit);
+        $create_link = array();
+        foreach ($createlink as $link) {
+            $unique = RedirectLinkTrack::where('linkid',$link->id)->distinct('ip')->pluck('ip');
+            $link->uniqueCount = count($unique);
+            $link->click_count = RedirectLinkTrack::where('linkid',$link->id)->sum('click_count');
+        }
+        return view('Admin.link_list',['createlinks' => $createlink,'limit' => $limit]);
     }
 
     public function deleteLink(Request $request)
@@ -195,8 +204,8 @@ class DashboardController extends Controller
        }
     }
     public function filterCategoryList()
-    {
-        $filters = CloakingFilter::orderBy('id','DESC')->paginate(3);
-        return view('Admin.filter_list',['filters'=> $filters]);
+    {   $limit=10;
+        $filters = CloakingFilter::orderBy('id','DESC')->paginate($limit);
+        return view('Admin.filter_list',['filters'=> $filters,'limit'=> $limit]);
     }
 }

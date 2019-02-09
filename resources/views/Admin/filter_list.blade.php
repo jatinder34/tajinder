@@ -28,12 +28,12 @@
                   </thead>
                   <tbody>
                     @if(!$filters->isEmpty())
-                      @php
-                          $i = 1;
-                          if(isset($_GET['page'])){
-                            $i =  $_GET['page']*3 - 2;
-                          }
-                      @endphp
+                        @php
+                            $i = 1;
+                            if(isset($_GET['page'])){
+                                $i =  $_GET['page']*$limit - 2;
+                            }
+                        @endphp
                       @foreach($filters as $filter)  
                         <tr>
                           <td>{{$i++}}</td>

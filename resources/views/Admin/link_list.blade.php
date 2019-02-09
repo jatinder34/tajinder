@@ -32,9 +32,12 @@
                   </thead>
                   <tbody>
                   	@if(!empty($createlinks))
-                  		@php
-                  			$i = 1;
-                  		@endphp
+                        @php
+                            $i = 1;
+                            if(isset($_GET['page'])){
+                                $i =  $_GET['page']*$limit - 2;
+                            }
+                        @endphp
 	                  	@foreach($createlinks as $links)
 		                    <tr>
 		                      <td>{{$i++}}</td>
@@ -65,6 +68,7 @@
                     @endif
                   </tbody>
                 </table>
+                {{ $createlinks->links() }}
               </div>
             </div>
           </div>
