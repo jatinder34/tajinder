@@ -270,7 +270,16 @@ class DashboardController extends Controller
         }
     }
 
-
-
-
+    public function deleteDomain(Request $request)
+    {
+       $input = $request->all();
+       $deleteFilter = Domain::where('id',$input['id'])->delete(); 
+       if($deleteFilter){
+           $message = array('success' => true, 'message' => "Deleted successfully." ); 
+           return json_encode($message);
+       }else{
+           $message = array('success' => false, 'message' => "Somthing went wrong, please try again!" );
+           return json_encode($message);         
+       }
+    }
 }

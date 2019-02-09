@@ -167,6 +167,43 @@
                     }
                 });
             });
+
+            $(document).on('click','.deleteDomain',function(){
+                var domainid = $(this).attr('data-id');
+                var btn = $(this);
+                swal({
+                    buttons: {
+                        cancel: true,
+                        confirm: true,
+                    },
+                    title: "Delete Domain",
+                    text: "Are you want to delete this Domain?",
+                })
+                .then((willDelete) => {
+                    if (willDelete) {
+                        $.ajax({
+                            type: "POST",
+                            url: "{{url('/admin/deleteDomain')}}",
+                            headers: {
+                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                            },
+                            dataType:'json',
+                            data: {
+                                'id':domainid,
+                            },
+                            success: function(result){
+                                if(result.success){
+                                    toastr.success(result.message, 'Delete Domain', {timeOut: 5000});
+                                    $(btn).closest('tr').remove();
+                                }else{
+                                    toastr.error(result.message, 'Delete Domain', {timeOut: 5000});
+                                }
+                            }
+                        });
+                    }
+                });
+            });
+
             $(".chosen-select").chosen({
               no_results_text: "Oops, nothing found!"
             })
