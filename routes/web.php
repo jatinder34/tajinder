@@ -35,8 +35,14 @@ Route::group(['prefix' => 'admin'], function () {
 	Route::get('/editfilterCategory/{id}', 'Admin\DashboardController@editfilterCategory');
 	Route::post('/editfilterCategory', 'Admin\DashboardController@updatefilter');
 	Route::post('/deleteFilter', 'Admin\DashboardController@deleteFilter');
-
 	Route::get('/filterList', 'Admin\DashboardController@filterCategoryList');
+
+	Route::get('/adddomain', 'Admin\DashboardController@showAddDomainForm');
+	Route::post('/adddomain', 'Admin\DashboardController@addDomain');
+	Route::get('/editDomain/{id}', 'Admin\DashboardController@editDomainForm');
+	Route::post('/editDomain', 'Admin\DashboardController@editDomain');
+	Route::post('/deleteDomain', 'Admin\DashboardController@deleteDomain');
+	Route::get('/domainList', 'Admin\DashboardController@domainList');
 
 });
 Auth::routes();

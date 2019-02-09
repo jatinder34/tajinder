@@ -53,6 +53,18 @@
 	          <i class="material-icons notranslate">vertical_split</i>  Filter category list </a>
 	      </div>
 	    </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle text-nowrap" data-toggle="dropdown" href="javascript:void(0)" role="button" aria-haspopup="true" aria-expanded="false">
+          <i class="material-icons notranslate" >vertical_split</i>
+          <span class="d-md-inline-block">Domain</span>
+        </a>
+        <div class="dropdown-menu dropdown-menu-small">
+          <a class="dropdown-item" href="{{url('/admin/adddomain')}}">
+            <i class="material-icons notranslate">note_add</i>  Add Domain </a>
+          <a class="dropdown-item " href="{{url('/admin/domainList')}}">
+            <i class="material-icons notranslate">vertical_split</i>  Domain list </a>
+        </div>
+      </li>
     </ul>
   </div>
 </aside>
