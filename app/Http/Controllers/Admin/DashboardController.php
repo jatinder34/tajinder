@@ -71,15 +71,6 @@ class DashboardController extends Controller
 
     public function linkList()
     {
-     /* $createlink = CreateLink::orderBy('id','DESC')->get();
-        $create_link = array();
-        foreach ($createlink as $link) {
-            $unique = RedirectLinkTrack::where('linkid',$link->id)->distinct('ip')->pluck('ip');
-            $link['uniqueCount'] = count($unique);
-            $link['click_count'] = RedirectLinkTrack::where('linkid',$link->id)->sum('click_count');
-            array_push($create_link, $link);
-        }
-      */
         $limit=10;
         $createlink = CreateLink::orderBy('id','DESC')->paginate($limit);
         $create_link = array();
