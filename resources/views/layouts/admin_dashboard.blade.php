@@ -73,6 +73,14 @@
                 var affilate_link = $('#affilate_link').val();
                 var merchent_link = $('#merchent_link').val();
                 var filter_category = $('#filter_category').val();
+
+                var ip = $('#ip').val();
+                var isp = $('#isp').val();
+                var browser = $('#browser').val();
+                var os = $('#os').val();
+                var devicetype = $('#devicetype').val();
+                var country = $('#country').val();
+                var domain = $('#domain').val();
                 $.ajax({
                     type: "POST",
                     url: "{{url('/admin/createLink')}}",
@@ -83,7 +91,13 @@
                     data: {
                         'affilate_link':affilate_link,
                         'merchent_link':merchent_link,
-                        'filter_by':filter_category
+                        'ip':ip,
+                        'isp':isp,
+                        'browser':browser,
+                        'os':os,
+                        'devicetype':devicetype,
+                        'country':country,
+                        'domain':domain
                     },
                     success: function(result){
                         $('.loader').hide();

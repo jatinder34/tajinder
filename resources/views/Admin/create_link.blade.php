@@ -29,14 +29,14 @@
 		    	        <div class="card-body">Filters</div>
 		    	    	<div class="card-body">
 		    	    		<label for="male">IP</label>
-		    	    		<select class="form-control form-control-lg mb-3" name="ip">
+		    	    		<select class="form-control form-control-lg mb-3" id="ip" name="ip">
 							  <option selected value="0">No</option>
 							  <option value="1">Yes</option>
 							</select>
 		    	    	</div>
 		    	    	<div class="card-body">
 		    	    		<label for="male">ISP</label>
-		    	    		<select class="form-control form-control-lg mb-3" name="isp">
+		    	    		<select class="form-control form-control-lg mb-3" id="isp" name="isp">
 							  <option value="">Select ISP</option>
 							  <option value="airtel">Airtel</option>
 							  <option value="vodafone">Vodafone</option>
@@ -52,7 +52,7 @@
 		    	    	</div>
 		    	    	<div class="card-body">
 		    	    		<label for="male">Browser</label>
-		    	    		<select class="form-control form-control-lg mb-3" name="browser">
+		    	    		<select class="form-control form-control-lg mb-3" id="browser" name="browser">
 		    	    		  <option value="">Select Browser</option>
 		    	    		  <option value="safari">Safari</option>
 							  <option value="chrome">chrome</option>
@@ -61,7 +61,7 @@
 		    	    	</div>
 		    	    	<div class="card-body">
 		    	    		<label for="male">OS</label>
-		    	    		<select class="form-control form-control-lg mb-3" name="os">
+		    	    		<select class="form-control form-control-lg mb-3" id="os" name="os">
 		    	    		  <option value="">Select OS</option>
 							  <option value="window">Window</option>
 							  <option value="mac">Mac</option>
@@ -70,7 +70,7 @@
 		    	    	</div>
 		    	    	<div class="card-body">
 		    	    		<label for="male">Device Type</label>
-		    	    		<select class="form-control form-control-lg mb-3" name="devicetype">
+		    	    		<select class="form-control form-control-lg mb-3" id="devicetype" name="devicetype">
 		    	    		  <option value="">Select Device Type</option>
 							  <option value="iOS">iOS</option>
 							  <option value="Android">Android</option>
@@ -79,20 +79,20 @@
 		    	    	</div>
 		    	    	<div class="card-body">
 		    	    		<label for="male">Countries</label>
-		    	    		<select class="form-control form-control-lg mb-3" name="country">
+		    	    		<select class="form-control form-control-lg mb-3" id="country" name="country">
 		    	    			<option value="">Select Country</option>
 							    @foreach($countries as $country)
 		    	          			<option value="{{$country->country_name}}">{{$country->country_name}}</option>
 		    	          		@endforeach
 							</select>
 		    	    	</div>
-		    	    	<select class="form-control form-control-lg mb-3" required name="domain">
+		    	    	<select class="form-control form-control-lg mb-3" required id="domain" name="domain">
 		    	    			<option value="">Select Domain</option>
 							@foreach($domain as $dom)
 		    	          		<option value="{{$dom->name}}">{{$dom->name}}</option>
 		    	          	@endforeach
 						</select>
-		    	        <input class="form-control form-control-lg mb-3" type="url" placeholder="Your link will appear here.." id="generated_link">
+		    	        <input class="form-control form-control-lg mb-3" disabled type="url" placeholder="Your link will appear here.." id="generated_link">
                         
 	    	      	</div>
 	    	      	<div class="ml-3 mb-3">
