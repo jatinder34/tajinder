@@ -62,32 +62,11 @@ class DashboardController extends Controller
             $data['affilate_link']=trim($input['affilate_link']);
             $data['merchent_link']=trim($input['merchent_link']);
             $data['domain']=trim($input['domain']);
-        /*
-                        Array
-            (
-                [affilate_link] => http://crudin.com/5-short-english-conversation-phrasaae/
-                [merchent_link] => http://crudin.com/
-                [ip] => 0
-                [isp] => 
-                [browser] => 
-                [os] => 
-                [devicetype] => Android
-                [country] => Algeria
-                [domain] => http://13.233.181.130/index.php/admin/adddomainn
-            )
-
-        /*
-            if(array_key_exists('filter_by', $input)){
-                $input['filter_by'] = implode(',', $input['filter_by']);
-            }else{
-                $input['filter_by'] = null;
-            } 
-        */
             $createlink = CreateLink::create($data);
             if($createlink){
                 //$link = URL::to('/admin/go').'/'.$createlink->id;
                 $link=rtrim($data['domain'],',');
-                $link = $link.'/index.php'.$createlink->id;
+                $link = $link.'/index.php/'.$createlink->id;
                 $message = array('success'=>true,'message'=>'Link generate successfully','url'=>$link);
 
                 /*** To insert Filter Table. ***/
@@ -167,10 +146,14 @@ class DashboardController extends Controller
     public function editLink($linkid)
     {
         $editLink = CreateLink::find($linkid);
-        $editLink['filter_by'] = explode(',',$editLink->filter_by);
-        $filters = CloakingFilter::get();
-        return view('Admin.edit_link',['editdata' => $editLink,'filters' => $filters]);
-
+        
+        $linkfilterType1 = LinkFilter::where('link_id',$linkid)->where('type',1)->first();
+        $linkfilterType2 = LinkFilter::where('link_id',$linkid)->where('type',2)->first();
+        $linkfilterType3 = LinkFilter::where('link_id',$linkid)->where('type',3)->first();
+        $linkfilterType4 = LinkFilter::where('link_id',$linkid)->where('type',4)->first();
+        $linkfilterType5 = LinkFilter::where('link_id',$linkid)->where('type',5)->first();
+        $linkfilterType6 = LinkFilter::where('link_id',$linkid)->where('type',6)->first();
+        return view('Admin.edit_link',['editdata' => $editLink,'linkfilterType1'=>$linkfilterType1,'linkfilterType2'=>$linkfilterType2,'linkfilterType3'=>$linkfilterType3,'linkfilterType4'=>$linkfilterType4,'linkfilterType5'=>$linkfilterType5,'linkfilterType6'=>$linkfilterType6]);
     }
 
     public function updateLink(Request $request)
@@ -179,11 +162,53 @@ class DashboardController extends Controller
         $updateLink = CreateLink::find($input['id']);
         $updateLink->affilate_link = $input['affilate_link'];
         $updateLink->merchent_link = $input['merchent_link'];
-        if(array_key_exists('filters', $input)){
-            $updateLink->filter_by = implode($input['filters'], ',');
-        }
         if($updateLink->save()){
             Toastr::success('Link successfully updated', 'Update Link', ["positionClass" => "toast-top-right"]);
+
+            $deleteFilter = LinkFilter::where('link_id',$input['id'])->delete();
+
+            /** Filter By Ip. ***/
+            
+            $filterlink=array();
+            $filterlink['link_id']=$input['id'];
+            if($input['ip']>0){
+                $filterlink['type']=1;
+                $filterlink['parameter']=$input['ip'];
+                LinkFilter::create($filterlink);
+            }
+
+            if($input['isp']!="" || $input['isp']!=NULL){
+                $filterlink['type']=2;
+                $filterlink['parameter']=$input['isp'];
+                LinkFilter::create($filterlink);
+            }
+
+            if($input['browser']!="" || $input['browser']!=NULL){
+                $filterlink['type']=3;
+                $filterlink['parameter']=$input['browser'];
+                LinkFilter::create($filterlink);
+            }
+
+            if($input['os']!="" || $input['os']!=NULL){
+                $filterlink['type']=4;
+                $filterlink['parameter']=$input['os'];
+                LinkFilter::create($filterlink);
+            }
+
+            if($input['devicetype']!="" || $input['devicetype']!=NULL){
+                $filterlink['type']=5;
+                $filterlink['parameter']=$input['devicetype'];
+                LinkFilter::create($filterlink);
+            }
+
+            if($input['country']!="" || $input['country']!=NULL){
+                $filterlink['type']=6;
+                $filterlink['parameter']=$input['country'];
+                LinkFilter::create($filterlink);
+            }         
+
+
+
             return redirect('/admin/linkList');
         }else{
             Toastr::error('Somthing went wrong!', 'Update Link', ["positionClass" => "toast-top-right"]);
