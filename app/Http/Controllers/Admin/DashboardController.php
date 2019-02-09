@@ -153,7 +153,8 @@ class DashboardController extends Controller
         $linkfilterType4 = LinkFilter::where('link_id',$linkid)->where('type',4)->first();
         $linkfilterType5 = LinkFilter::where('link_id',$linkid)->where('type',5)->first();
         $linkfilterType6 = LinkFilter::where('link_id',$linkid)->where('type',6)->first();
-        return view('Admin.edit_link',['editdata' => $editLink,'linkfilterType1'=>$linkfilterType1,'linkfilterType2'=>$linkfilterType2,'linkfilterType3'=>$linkfilterType3,'linkfilterType4'=>$linkfilterType4,'linkfilterType5'=>$linkfilterType5,'linkfilterType6'=>$linkfilterType6]);
+        $country = Country::get();
+        return view('Admin.edit_link',['editdata' => $editLink,'linkfilterType1'=>$linkfilterType1,'linkfilterType2'=>$linkfilterType2,'linkfilterType3'=>$linkfilterType3,'linkfilterType4'=>$linkfilterType4,'linkfilterType5'=>$linkfilterType5,'linkfilterType6'=>$linkfilterType6,'countries'=>$country]);
     }
 
     public function updateLink(Request $request)
