@@ -41,7 +41,7 @@
 	          <i class="material-icons notranslate">vertical_split</i>  Link list </a>
 	      </div>
 	    </li>
-	    <li class="nav-item dropdown">
+	    <!--li class="nav-item dropdown">
 	      <a class="nav-link dropdown-toggle text-nowrap" data-toggle="dropdown" href="javascript:void(0)" role="button" aria-haspopup="true" aria-expanded="false">
 	        <i class="material-icons notranslate" >vertical_split</i>
 	        <span class="d-md-inline-block">Filter</span>
@@ -52,7 +52,7 @@
 	        <a class="dropdown-item " href="{{url('/admin/filterList')}}">
 	          <i class="material-icons notranslate">vertical_split</i>  Filter category list </a>
 	      </div>
-	    </li>
+	    </li-->
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle text-nowrap" data-toggle="dropdown" href="javascript:void(0)" role="button" aria-haspopup="true" aria-expanded="false">
           <i class="material-icons notranslate" >vertical_split</i>

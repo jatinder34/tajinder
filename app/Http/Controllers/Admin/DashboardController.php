@@ -10,6 +10,7 @@ use App\Models\CloakingFilter;
 use App\Models\RedirectLinkTrack;
 use App\Models\Domain;
 use App\Models\Country;
+use App\Models\LinkFilter;
 use Toastr,URL,DB;
 class DashboardController extends Controller
 {
@@ -58,11 +59,10 @@ class DashboardController extends Controller
             }
         }else{
             $data=array();
-            $data['affilate_link']=$input['affilate_link'];
-            $data['merchent_link']=$input['merchent_link'];
-            $data['domain']=$input['domain'];
-            print_R($input);exit;
-            /*
+            $data['affilate_link']=trim($input['affilate_link']);
+            $data['merchent_link']=trim($input['merchent_link']);
+            $data['domain']=trim($input['domain']);
+        /*
                         Array
             (
                 [affilate_link] => http://crudin.com/5-short-english-conversation-phrasaae/
@@ -83,10 +83,53 @@ class DashboardController extends Controller
                 $input['filter_by'] = null;
             } 
         */
-            $createlink = CreateLink::create($input);
+            $createlink = CreateLink::create($data);
             if($createlink){
-                $link = URL::to('/admin/go').'/'.$createlink->id;
+                //$link = URL::to('/admin/go').'/'.$createlink->id;
+                $link=rtrim($data['domain'],',');
+                $link = $link.'/index.php'.$createlink->id;
                 $message = array('success'=>true,'message'=>'Link generate successfully','url'=>$link);
+
+                /*** To insert Filter Table. ***/
+
+                /** Filter By Ip. ***/
+                $filterlink=array();
+                $filterlink['link_id']=$createlink->id;
+                if($input['ip']>0){
+                    $filterlink['type']=1;
+                    $filterlink['parameter']=$input['ip'];
+                    LinkFilter::create($filterlink);
+                }
+
+                if($input['isp']!="" || $input['isp']!=NULL){
+                    $filterlink['type']=2;
+                    $filterlink['parameter']=$input['isp'];
+                    LinkFilter::create($filterlink);
+                }
+
+                if($input['browser']!="" || $input['browser']!=NULL){
+                    $filterlink['type']=3;
+                    $filterlink['parameter']=$input['browser'];
+                    LinkFilter::create($filterlink);
+                }
+
+                if($input['os']!="" || $input['os']!=NULL){
+                    $filterlink['type']=4;
+                    $filterlink['parameter']=$input['os'];
+                    LinkFilter::create($filterlink);
+                }
+
+                if($input['devicetype']!="" || $input['devicetype']!=NULL){
+                    $filterlink['type']=5;
+                    $filterlink['parameter']=$input['devicetype'];
+                    LinkFilter::create($filterlink);
+                }
+
+                if($input['country']!="" || $input['country']!=NULL){
+                    $filterlink['type']=6;
+                    $filterlink['parameter']=$input['country'];
+                    LinkFilter::create($filterlink);
+                }
                 return json_encode($message);
              }else{
                 $message = array('success'=>false,'message'=>'Somthing went wrong, please try again!');
