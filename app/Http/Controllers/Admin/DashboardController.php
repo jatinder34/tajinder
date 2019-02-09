@@ -61,11 +61,11 @@ class DashboardController extends Controller
             $data=array();
             $data['affilate_link']=trim($input['affilate_link']);
             $data['merchent_link']=trim($input['merchent_link']);
-            $data['domain']=trim($input['domain']);
+            $data['domain']=trim(rtrim($input['domain'],'/'));
             $createlink = CreateLink::create($data);
             if($createlink){
                 //$link = URL::to('/admin/go').'/'.$createlink->id;
-                $link=rtrim($data['domain'],',');
+                $link=$data['domain'];
                 $link = $link.'/index.php/'.$createlink->id;
                 $message = array('success'=>true,'message'=>'Link generate successfully','url'=>$link);
 

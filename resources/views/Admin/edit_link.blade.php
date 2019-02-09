@@ -132,7 +132,7 @@
 		    	          	@endforeach -->
 						</select>
 						<label for="male">Generated Link</label>
-		    	        <input class="form-control form-control-lg mb-3" type="url" placeholder="Your link will appear here.." id="generated_link" value="{{url('/admin/go')}}/{{$editdata->id}}">
+		    	        <input disabled class="form-control form-control-lg mb-3" type="url" placeholder="Your link will appear here.." id="generated_link" value="{{$editdata->domain}}/index.php/{{$editdata->id}}">
                         <input type="hidden" name="id" value="{{$editdata->id}}">
 	    	      	</div>
 	    	      	<div class="ml-3 mb-3">
