@@ -286,4 +286,51 @@ class DashboardController extends Controller
            return json_encode($message);         
        }
     }
+    
+    public function test(Request $request)
+    {
+        $post = [];
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL,'http://ip-api.com/json/122.173.170.229');
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($post));
+        $response = curl_exec($ch);
+        $result = json_decode($response);
+        
+        echo $_SERVER['HTTP_USER_AGENT'] . "\n\n";
+        
+        echo "nxt";
+        
+        echo "<br />";
+        
+        if(strstr(strtolower($_SERVER['HTTP_USER_AGENT']), 'mobile') || strstr(strtolower($_SERVER['HTTP_USER_AGENT']), 'android') || strstr(strtolower($_SERVER['HTTP_USER_AGENT']), 'iphone')) {
+           if(strstr(strtolower($_SERVER['HTTP_USER_AGENT']), 'iphone')) {
+                echo "iphone";
+           }else if(strstr(strtolower($_SERVER['HTTP_USER_AGENT']), 'android')) {
+                echo "android";
+           }
+        }else{
+            if(strstr(strtolower($_SERVER['HTTP_USER_AGENT']), 'window')) {
+                echo "web";
+            }else if(strstr(strtolower($_SERVER['HTTP_USER_AGENT']), 'mac')) {
+                echo "mac";
+            }else{
+                echo "Ubuntu";
+            }
+        }
+           
+        if(strstr(strtolower($_SERVER['HTTP_USER_AGENT']), 'mozilla') && strstr(strtolower($_SERVER['HTTP_USER_AGENT']), 'chrome') && strstr(strtolower($_SERVER['HTTP_USER_AGENT']), 'safari')) {
+            echo "chrome";
+        }else if(strstr(strtolower($_SERVER['HTTP_USER_AGENT']), 'mozilla') && strstr(strtolower($_SERVER['HTTP_USER_AGENT']), 'safari')) {
+            echo "safari";
+        }else{
+           echo "mozila";
+        }
+           
+           
+        echo "<br />";
+        
+        print'<pre>';print_R($result);exit;
+    }
+    
 }

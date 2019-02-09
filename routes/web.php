@@ -14,6 +14,9 @@
 Route::get('/', function () {
     return view('welcome');
 });
+    
+Route::get('admin/test', 'Admin\DashboardController@test');
+    
 Route::group(['prefix' => 'admin'], function () {
 	Route::get('/login', 'Auth\LoginController@showLoginForm');
 	Route::post('/login', 'Auth\LoginController@authenticate');
