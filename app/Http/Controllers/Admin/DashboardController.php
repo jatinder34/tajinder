@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Validator;
 use App\Models\CreateLink;
 use App\Models\CloakingFilter;
 use App\Models\RedirectLinkTrack;
+use App\Models\Domain;
 use Toastr,URL,DB;
 class DashboardController extends Controller
 {
@@ -194,9 +195,82 @@ class DashboardController extends Controller
            return json_encode($message);         
        }
     }
+
     public function filterCategoryList()
     {   $limit=10;
         $filters = CloakingFilter::orderBy('id','DESC')->paginate($limit);
         return view('Admin.filter_list',['filters'=> $filters,'limit'=> $limit]);
     }
+
+    public function domainList()
+    {   $limit=10;
+        $domain = Domain::orderBy('id','DESC')->paginate($limit);
+        return view('Admin.domain_list',['domains'=> $domain,'limit'=> $limit]);
+    }
+    
+    public function showAddDomainForm()
+    {
+        return view('Admin.add_domain');
+    }
+
+    public function addDomain(Request $request)
+    {
+        $input = $request->all();
+        $validation = Validator::make($input, [
+            'name' => 'required|unique:domain',
+        ]);
+        if ( $validation->fails() ) {
+            if($validation->messages()->first('name')){
+                Toastr::error('Domain is already exist.', 'Error', ["positionClass" => "toast-top-right"]);
+                return redirect('/admin/adddomain');
+            }
+        }else{
+            $filter = Domain::create($input);
+            if($filter){
+                Toastr::success('Domain added successfully.', 'Success', ["positionClass" => "toast-top-right"]);
+                return redirect('/admin/domainList');
+            }else{
+                Toastr::error('Somthing went wrong, please try again!', 'Error', ["positionClass" => "toast-top-right"]);
+                return redirect('/admin/adddomain');
+            }
+        }
+    }
+
+    public function editDomainForm($id)
+    {
+        $domain = Domain::find($id);
+        return view('Admin.edit_domain',['domain' => $domain]);
+    }
+    
+
+    public function editDomain(Request $request)
+    {
+        $input = $request->all();
+        $validation = Validator::make($input, [
+            'id' => 'required',
+            'name' => 'required|unique:domain,name,'.$input['id'],
+        ]);
+        if ( $validation->fails() ) {
+            if($validation->messages()->first('filter_name')){
+                return array('success'=>false,'message'=>'Domain already exist.');
+            }
+            if($validation->messages()->first('id')){
+                return array('success'=>false,'message'=>'Not a valid domain');
+            }
+        }else{
+            $domain = Domain::find($input['id']);
+            $domain->name = $input['name'];
+            if($domain->save()){
+                Toastr::success('Domain updated successfully.', 'Success', ["positionClass" => "toast-top-right"]);
+                return redirect('/admin/domainList');
+            }else{
+                Toastr::error('Somthing went wrong, please try again!', 'Error', ["positionClass" => "toast-top-right"]);
+                return redirect('/admin/editDomain/'.$input['id']);
+            }
+        }
+    }
+
+
+
+
 }
