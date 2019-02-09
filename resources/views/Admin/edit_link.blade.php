@@ -126,6 +126,7 @@
 		    	          		@endforeach
 							</select>
 		    	    	</div>
+		    	    	<label for="male">Domain</label>
 		    	    	<select class="form-control form-control-lg mb-3" required id="domain" name="domain">
 		    	    		<option value="{{$editdata->merchent_link}}">{{$editdata->merchent_link}}</option>
 		    	    		<!--option value="">Select Domain</option>
