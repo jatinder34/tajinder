@@ -76,7 +76,8 @@ class RedirectController extends Controller
     public function redirectLink(Request $request,$id)
     {
         $url = URL::current();
-        print_R($url);exit;
+        $ip = $_SERVER["REMOTE_ADDR"];
+        print_R($ip);exit;
         return redirect($redirecturl);
     }
 
