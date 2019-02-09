@@ -251,11 +251,15 @@ class DashboardController extends Controller
             'name' => 'required|unique:domain,name,'.$input['id'],
         ]);
         if ( $validation->fails() ) {
-            if($validation->messages()->first('filter_name')){
-                return array('success'=>false,'message'=>'Domain already exist.');
+            if($validation->messages()->first('name')){
+                Toastr::error('Domain already exist.', 'Error', ["positionClass" => "toast-top-right"]);
+                return redirect('/admin/editDomain/'.$input['id']);
+                //return array('success'=>false,'message'=>'Domain already exist.');
             }
             if($validation->messages()->first('id')){
-                return array('success'=>false,'message'=>'Not a valid domain');
+                Toastr::error('Not a valid domain.', 'Error', ["positionClass" => "toast-top-right"]);
+                return redirect('/admin/editDomain/'.$input['id']);
+                //return array('success'=>false,'message'=>'Not a valid domain');
             }
         }else{
             $domain = Domain::find($input['id']);
