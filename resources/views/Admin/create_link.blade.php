@@ -29,7 +29,7 @@
 		    	    	<div class="card-body">Categories</div>
 		    	    	<div class="card-body">
 		    	    		<label for="male">Male</label>
-		    	    		<select name="cars">
+		    	    		<select class="form-control form-control-lg mb-3" name="cars">
 							  <option value="volvo">Volvo</option>
 							  <option value="saab">Saab</option>
 							  <option value="opel">Opel</option>
@@ -38,7 +38,7 @@
 		    	    	</div>
 		    	    	<div class="card-body">
 		    	    		<label for="male">Male</label>
-		    	    		<select name="cars">
+		    	    		<select class="form-control form-control-lg mb-3" name="cars">
 							  <option value="volvo">Volvo</option>
 							  <option value="saab">Saab</option>
 							  <option value="opel">Opel</option>
@@ -47,7 +47,7 @@
 		    	    	</div>
 		    	    	<div class="card-body">
 		    	    		<label for="male">Male</label>
-		    	    		<select name="cars">
+		    	    		<select class="form-control form-control-lg mb-3" name="cars">
 							  <option value="volvo">Volvo</option>
 							  <option value="saab">Saab</option>
 							  <option value="opel">Opel</option>
@@ -56,7 +56,7 @@
 		    	    	</div>
 		    	    	<div class="card-body">
 		    	    		<label for="male">Male</label>
-		    	    		<select name="cars">
+		    	    		<select class="form-control form-control-lg mb-3" name="cars">
 							  <option value="volvo">Volvo</option>
 							  <option value="saab">Saab</option>
 							  <option value="opel">Opel</option>
@@ -65,7 +65,7 @@
 		    	    	</div>
 		    	    	<div class="card-body">
 		    	    		<label for="male">Male</label>
-		    	    		<select name="cars">
+		    	    		<select class="form-control form-control-lg mb-3" name="cars">
 							  <option value="volvo">Volvo</option>
 							  <option value="saab">Saab</option>
 							  <option value="opel">Opel</option>
@@ -74,31 +74,15 @@
 		    	    	</div>
 		    	    	<div class="card-body">
 		    	    		<label for="male">Male</label>
-		    	    		<select name="cars">
+		    	    		<select class="form-control form-control-lg mb-3" name="cars">
 							  <option value="volvo">Volvo</option>
 							  <option value="saab">Saab</option>
 							  <option value="opel">Opel</option>
 							  <option value="audi">Audi</option>
 							</select>
 		    	    	</div>
-		    	    	<div class="card-body">
-		    	    		<label for="male">Male</label>
-		    	    		<select name="cars">
-							  <option value="volvo">Volvo</option>
-							  <option value="saab">Saab</option>
-							  <option value="opel">Opel</option>
-							  <option value="audi">Audi</option>
-							</select>
-		    	    	</div>
-		    	    	<div class="card-body">
-		    	    		<label for="male">Male</label>
-		    	    		<select name="cars">
-							  <option value="volvo">Volvo</option>
-							  <option value="saab">Saab</option>
-							  <option value="opel">Opel</option>
-							  <option value="audi">Audi</option>
-							</select>
-		    	    	</div>
+		    	    	
+		    	    	
 		    	        <input class="form-control form-control-lg mb-3" type="url" placeholder="Your link will appear here.." id="generated_link">
                         
 	    	      	</div>
