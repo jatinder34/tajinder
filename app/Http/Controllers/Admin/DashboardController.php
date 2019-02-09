@@ -57,7 +57,25 @@ class DashboardController extends Controller
                 return array('success'=>false,'message'=>'Link already exist.');
             }
         }else{
+            $data=array();
+            $data['affilate_link']=$input['affilate_link'];
+            $data['merchent_link']=$input['merchent_link'];
+            $data['domain']=$input['domain'];
             print_R($input);exit;
+            /*
+                        Array
+            (
+                [affilate_link] => http://crudin.com/5-short-english-conversation-phrasaae/
+                [merchent_link] => http://crudin.com/
+                [ip] => 0
+                [isp] => 
+                [browser] => 
+                [os] => 
+                [devicetype] => Android
+                [country] => Algeria
+                [domain] => http://13.233.181.130/index.php/admin/adddomainn
+            )
+
         /*
             if(array_key_exists('filter_by', $input)){
                 $input['filter_by'] = implode(',', $input['filter_by']);
