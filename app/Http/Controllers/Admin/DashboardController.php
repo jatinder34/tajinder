@@ -356,7 +356,7 @@ class DashboardController extends Controller
             }
         }else{
             $isp = ISP::find($input['id']);
-            $isp = $input['name'];
+            $isp->name = $input['name'];
             if($isp->save()){
                 Toastr::success('ISP updated successfully.', 'Success', ["positionClass" => "toast-top-right"]);
                 return redirect('/admin/ispList');
