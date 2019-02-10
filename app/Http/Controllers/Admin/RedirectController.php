@@ -233,6 +233,7 @@ class RedirectController extends Controller
                 $redirecturl = $createlink->affilate_link;
             }
         }else{
+            $ipcount=$this->ip($id);
             $redirecturl = $createlink->affilate_link;
         }
         return redirect($redirecturl);
