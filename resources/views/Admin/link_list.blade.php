@@ -35,7 +35,7 @@
                         @php
                             $i = 1;
                             if(isset($_GET['page']) && $_GET['page']>1){
-                                $i =  $_GET['page']*$limit - 2;
+                                $i =  ($_GET['page']-1)*$limit;
                             }
                         @endphp
 	                  	@foreach($createlinks as $links)
