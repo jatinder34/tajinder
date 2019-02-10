@@ -212,7 +212,7 @@ class RedirectController extends Controller
                         }
                 }
                 if($filter->type=='6'){
-                    if(strstr(strtolower($result->country), strtolower($filter->parameter)) {
+                    if(strstr(strtolower($result->country), strtolower($filter->parameter))) {
                         $tocheck=$tocheck+1;
                     }else{
                         if($tocheck>0){
