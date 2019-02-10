@@ -22,6 +22,7 @@
                   <thead class="bg-light">
                     <tr>
                       <th scope="col" class="border-0">#</th>
+                      <th scope="col" class="border-0">Name</th>
                       <th scope="col" class="border-0">Affilate link</th>
                       <th scope="col" class="border-0">Merchent link</th>
                       <th scope="col" class="border-0">Click Count</th>
@@ -42,6 +43,7 @@
 		                    <tr>
                           @php $i=$i+1; @endphp
 		                      <td>{{$i}}</td>
+                          <td>{{$links->name}}</td>
 		                      <td class="text-left">
                             <a target="_blank" href="{{$links->affilate_link}}">{{$links->affilate_link}}</a>
                           </td>

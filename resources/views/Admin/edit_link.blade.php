@@ -19,6 +19,10 @@
 		    	  <!-- Add New Post Form -->
 		    	  <div class="card card-small mb-3">
 		    	    <div class="card-body">
+		    	    	
+		    	    	<label for="male">Name</label>
+		    	        <input class="form-control form-control-lg mb-3" type="text" placeholder="Name" name="name" id="name" required value="{{$editdata->name}}">
+
 		    	    	<label for="male">Affilate Link</label>
 		    	        <input class="form-control form-control-lg mb-3" type="url" placeholder="Affilate Link" name="affilate_link" id="affilate_link" required="" value="{{$editdata->affilate_link}}">
 		    	        <label for="male">Merchant Link</label>
