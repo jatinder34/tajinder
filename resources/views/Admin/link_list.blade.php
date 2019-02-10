@@ -33,14 +33,14 @@
                   <tbody>
                   	@if(!empty($createlinks))
                         @php
-                            $i = 1;
+                            $i = 0;
                             if(isset($_GET['page']) && $_GET['page']>1){
                                 $i =  ($_GET['page'])*$limit;
                             }
                         @endphp
 	                  	@foreach($createlinks as $links)
 		                    <tr>
-		                      <td>{{$i}}</td>
+		                      <td>{{$i++}}</td>
 		                      <td class="text-left">
                             <a target="_blank" href="{{$links->affilate_link}}">{{$links->affilate_link}}</a>
                           </td>
@@ -58,7 +58,7 @@
 		                      	<a href="javascript:void(0)" data-id="{{$links->id}}" class="deleteLink"><i class="material-icons notranslate">delete</i></a>
 		                      </td>
 		                    </tr>
-                        @php $i++; @endphp
+                        
 
 	                    @endforeach
                     @else
