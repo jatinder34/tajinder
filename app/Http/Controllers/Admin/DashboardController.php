@@ -362,7 +362,7 @@ class DashboardController extends Controller
                 return redirect('/admin/ispList');
             }else{
                 Toastr::error('Somthing went wrong, please try again!', 'Error', ["positionClass" => "toast-top-right"]);
-                return redirect('/admin/editisp/'.$input['id']);
+                return redirect('/admin/editIsp/'.$input['id']);
             }
         }
     }
