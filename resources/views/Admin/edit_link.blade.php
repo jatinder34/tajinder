@@ -128,7 +128,7 @@
 		    	    		
 		    	    		<option value="">Select Domain</option>
 							@foreach($domain as $dom)
-		    	          		<option <?php if($editdata->domain==$dom->name){ echo 'selected'; } ?>value="{{$dom->name}}">{{$dom->name}}</option>
+		    	          		<option <?php if($editdata->domain==$dom->name){ echo 'selected'; } ?> value="{{$dom->name}}">{{$dom->name}}</option>
 		    	          	@endforeach>
 						</select>
 						<label for="male">Generated Link</label>
