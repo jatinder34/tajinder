@@ -393,9 +393,10 @@ class DashboardController extends Controller
     
     public function test(Request $request)
     {
+        $ip = $_SERVER["REMOTE_ADDR"];
         $post = [];
         $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL,'http://ip-api.com/json/122.173.170.229');
+        curl_setopt($ch, CURLOPT_URL,'http://ip-api.com/json/'.$ip);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($post));
         $response = curl_exec($ch);
