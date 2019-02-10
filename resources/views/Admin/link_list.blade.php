@@ -58,7 +58,7 @@
 		                      	<a href="javascript:void(0)" data-id="{{$links->id}}" class="deleteLink"><i class="material-icons notranslate">delete</i></a>
 		                      </td>
 		                    </tr>
-                        @php $i++;
+                        @php $i++; @endphp
 
 	                    @endforeach
                     @else
