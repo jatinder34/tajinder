@@ -85,7 +85,7 @@
 	                <h6 class="stats-small__value count my-3">{{$uniqueCount}}</h6>
 	              </div>
 	              <div class="stats-small__data">
-	                <span class="stats-small__percentage stats-small__percentage--decrease"></span>
+	                <span class="stats-small__percentage stats-small__percentage--increase"></span>
 	              </div>
 	            </div>
 	            <canvas height="120" class="blog-overview-stats-small-5"></canvas>
