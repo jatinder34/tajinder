@@ -47,6 +47,17 @@ Route::group(['prefix' => 'admin'], function () {
 	Route::post('/deleteDomain', 'Admin\DashboardController@deleteDomain');
 	Route::get('/domainList', 'Admin\DashboardController@domainList');
 
+	/***  Isp  ***/
+	
+	Route::get('/addIsp', 'Admin\DashboardController@addIsp');
+	Route::post('/addIsp', 'Admin\DashboardController@insertIsp');
+	Route::get('/editisp/{id}', 'Admin\DashboardController@editIsp');
+	Route::post('/editIsp', 'Admin\DashboardController@updateIsp');
+	Route::post('/deleteIsp', 'Admin\DashboardController@deleteIsp');
+	Route::get('/ispList', 'Admin\DashboardController@ispList');
+	
+	/***  Edit ***/
+	
 });
 Auth::routes();
 

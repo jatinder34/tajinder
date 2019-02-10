@@ -15,6 +15,7 @@ class CreateIspTable extends Migration
     {
         Schema::create('isp', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('name')->nullable();
             $table->timestamps();
         });
     }

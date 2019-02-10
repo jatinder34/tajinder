@@ -11,6 +11,7 @@ use App\Models\RedirectLinkTrack;
 use App\Models\Domain;
 use App\Models\Country;
 use App\Models\LinkFilter;
+use App\Models\ISP;
 use Toastr,URL,DB;
 class DashboardController extends Controller
 {
@@ -303,6 +304,88 @@ class DashboardController extends Controller
         $filters = CloakingFilter::orderBy('id','DESC')->paginate($limit);
         return view('Admin.filter_list',['filters'=> $filters,'limit'=> $limit]);
     }
+
+    /***. Isp. ***/
+    public function addIsp()
+    {
+        return view('Admin.add_isp');
+    }
+
+    public function insertIsp(Request $request)
+    {
+        $input = $request->all();
+        $validation = Validator::make($input, [
+            'name' => 'required|unique:isp',
+        ]);
+        if ( $validation->fails() ) {
+            if($validation->messages()->first('name')){
+                Toastr::error('ISP name is already exist.', 'Error', ["positionClass" => "toast-top-right"]);
+                return redirect('/admin/addisp');
+            }
+        }else{
+            $filter = ISP::create($input);
+            if($filter){
+                Toastr::success('ISP added successfully.', 'Success', ["positionClass" => "toast-top-right"]);
+                return redirect('/admin/ispList');
+            }else{
+                Toastr::error('Somthing went wrong, please try again!', 'Error', ["positionClass" => "toast-top-right"]);
+                return redirect('/admin/addisp');
+            }
+        }
+    }
+
+    public function editIsp($id)
+    {
+        $isp = ISP::find($id);
+        return view('Admin.edit_isp',['isp' => $isp]);
+    }
+
+    public function updateIsp(Request $request)
+    {
+        $input = $request->all();
+        $validation = Validator::make($input, [
+            'id' => 'required',
+            'name' => 'required|unique:isp,name,'.$input['id'],
+        ]);
+        if ( $validation->fails() ) {
+            if($validation->messages()->first('name')){
+                return array('success'=>false,'message'=>'ISP already exist.');
+            }
+            if($validation->messages()->first('id')){
+                return array('success'=>false,'message'=>'ISP id required.');
+            }
+        }else{
+            $isp = ISP::find($input['id']);
+            $isp = $input['name'];
+            if($isp->save()){
+                Toastr::success('ISP updated successfully.', 'Success', ["positionClass" => "toast-top-right"]);
+                return redirect('/admin/ispList');
+            }else{
+                Toastr::error('Somthing went wrong, please try again!', 'Error', ["positionClass" => "toast-top-right"]);
+                return redirect('/admin/editisp/'.$input['id']);
+            }
+        }
+    }
+
+    public function deleteIsp(Request $request)
+    {
+       $input = $request->all();
+       $isp = ISP::where('id',$input['id'])->delete(); 
+       if($isp){
+           $message = array('success' => true, 'message' => "Deleted successfully." ); 
+           return json_encode($message);
+       }else{
+           $message = array('success' => false, 'message' => "Somthing went wrong, please try again!" );
+           return json_encode($message);         
+       }
+    }
+
+    public function ispList()
+    {   $limit=10;
+        $isp = ISP::orderBy('id','DESC')->paginate($limit);
+        return view('Admin.isp_list',['isps'=> $isp,'limit'=> $limit]);
+    }
+    /***  End  ***/
 
     public function domainList()
     {   $limit=10;

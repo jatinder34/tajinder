@@ -6,7 +6,7 @@
       <!-- Page Header -->
       <div class="page-header row no-gutters py-4">
         <div class="col-12 col-sm-4 text-center text-sm-left mb-0">
-          <span class="text-uppercase page-subtitle">Filter list</span>
+          <span class="text-uppercase page-subtitle">ISP list</span>
         </div>
       </div>
       <!-- End Page Header -->
@@ -15,40 +15,40 @@
           <div class="col">
             <div class="card card-small mb-4">
               <div class="card-header border-bottom">
-                <h6 class="m-0">Filters</h6>
+                <h6 class="m-0">ISP</h6>
               </div>
               <div class="card-body p-0 pb-3 text-center table-responsive">
                 <table class="table mb-0">
                   <thead class="bg-light">
                     <tr>
                       <th scope="col" class="border-0">#</th>
-                      <th scope="col" class="border-0">Filter name</th>
+                      <th scope="col" class="border-0">Name</th>
                       <th scope="col" class="border-0">Action</th>
                     </tr>
                   </thead>
                   <tbody> 
-                    @if(!$filters->isEmpty())
+                    @if(count($isps)>0)
                         @php
                             $i = 0;
                             if(isset($_GET['page']) && $_GET['page']>1){
                                 $i =  ($_GET['page']-1)*$limit;
                             }
                         @endphp
-                      @foreach($filters as $filter)  
+                      @foreach($isps as $isp)  
                         <tr>
                           @php $i=$i+1; @endphp
                           <td>{{$i}}</td>
-                          <td>{{$filter->filter_name}}</td>
+                          <td>{{$isp->name}}</td>
                           <td>
-                            <a href="{{url('/admin/editfilterCategory')}}/{{$filter->id}}"><i class="material-icons notranslate">edit</i></a>
-                            <a href="javascript:void(0)" data-id="{{$filter->id}}" class="deleteFilter"><i class="material-icons notranslate">delete</i></a>
+                            <a href="{{url('/admin/editIsp')}}/{{$isp->id}}"><i class="material-icons notranslate">edit</i></a>
+                            <a href="javascript:void(0)" data-id="{{$isp->id}}" class="deleteIsp"><i class="material-icons notranslate">delete</i></a>
                           </td>
                         </tr>
                       @endforeach
                     @else
                         <tr>
                           <td colspan="3">
-                            <h4 class="mb-0 mt-2">There are no filter categories.</h4>
+                            <h4 class="mb-0 mt-2">No Data Found.</h4>
                           </td>
                         </tr>
                     @endif

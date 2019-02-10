@@ -9,6 +9,7 @@ use App\Models\CreateLink;
 use App\Models\CloakingFilter;
 use App\Models\RedirectLinkTrack;
 use App\Models\LinkFilter;
+use App\Models\ISP;
 use Toastr,URL,Cookie;
 class RedirectController extends Controller
 {
@@ -81,15 +82,24 @@ class RedirectController extends Controller
 
         $createlink = CreateLink::find($id);
         $linkfilter = LinkFilter::where('link_id',$createlink->id)->get();
-        if(count($linkfilter)>0){
-            $post = [];
-            $ch = curl_init();
-            curl_setopt($ch, CURLOPT_URL,'http://ip-api.com/json/'.$ip);
-            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-            curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($post));
-            $response = curl_exec($ch);
-            $result = json_decode($response);
 
+        /*** To fetch ISP. ***/
+        $post = [];
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL,'http://ip-api.com/json/'.$ip);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($post));
+        $response = curl_exec($ch);
+        $result = json_decode($response);
+
+        /*** Create update ISP ***/
+        if($result->as!="" || $result->as!=NULL){
+           ISP::updateOrCreate(["name" => trim($result->as)],['name'=>trim($result->as)]); 
+        }
+        /*** End  ***/
+
+        /*** End. ***/
+        if(count($linkfilter)>0){
             $ipcount=$this->ip($id);
             $tocheck=0;
             $totcount=count($linkfilter);
