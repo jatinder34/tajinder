@@ -42,7 +42,11 @@
 		    	    		<select id="filter_category" data-placeholder="Begin typing a name to ISP..." name="isp" class="chosen-select form-control form-control-lg mb-3" >
 			    	            @if(!$isp->isEmpty())
 			    	          	    @foreach($isp as $ispp)
-			    	          			<option <?php if($linkfilterType2->parameter==$ispp->name){ echo 'selected';} ?>  value="{{$ispp->name}}">{{$ispp->name}}</option>
+			    	          	    	<?php if($linkfilterType2){  ?>
+			    	          	    		<option <?php if($linkfilterType2->parameter==$ispp->name){ echo 'selected';} ?>  value="{{$ispp->name}}">{{$ispp->name}}</option>
+			    	          	    	<?php }else{ ?>
+			    	          	    		<option value="{{$ispp->name}}">{{$ispp->name}}</option>
+			    	          	    	<?php } ?>
 			    	          		@endforeach
 			    	          	@endif
 		    	        	</select>
