@@ -68,6 +68,7 @@ class DashboardController extends Controller
             $data=array();
             $data['affilate_link']=trim($input['affilate_link']);
             $data['merchent_link']=trim($input['merchent_link']);
+            $data['name']=trim($input['name']);
             $data['domain']=trim(rtrim($input['domain'],'/'));
             $createlink = CreateLink::create($data);
             if($createlink){
@@ -347,7 +348,7 @@ class DashboardController extends Controller
             'id' => 'required',
             'name' => 'required|unique:isp,name,'.$input['id'],
         ]);
-        if ( $validation->fails() ) {
+        if($validation->fails()){
             if($validation->messages()->first('name')){
                 return array('success'=>false,'message'=>'ISP already exist.');
             }
