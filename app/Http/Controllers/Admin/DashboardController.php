@@ -33,8 +33,10 @@ class DashboardController extends Controller
     {
         $totaldomain = Domain::count();
         $totallink=CreateLink::count();
-        //return view('Admin.dashboard');
-        return view('Admin.dashboard',['totaldomain' => $totaldomain,'totallink' => $totallink]);
+
+        $uniqueCount = RedirectLinkTrack::distinct('ip')->count();
+        $totalclickcount = RedirectLinkTrack::sum('click_count');
+        return view('Admin.dashboard',['totaldomain' => $totaldomain,'totallink' => $totallink,'uniqueCount'=>$uniqueCount,'totalclickcount'=>$totalclickcount]);
 
     }
 
