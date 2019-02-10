@@ -119,7 +119,7 @@ class DashboardController extends Controller
                     LinkFilter::create($filterlink);
                 }
 
-                if($input['iprange']!="" || $input['country']!=NULL){
+                if($input['iprange']!="" || $input['iprange']!=NULL){
                     $filterlink['type']=7;
                     $filterlink['parameter']=$input['iprange'];
                     LinkFilter::create($filterlink);
@@ -227,10 +227,14 @@ class DashboardController extends Controller
                 $filterlink['type']=6;
                 $filterlink['parameter']=$input['country'];
                 LinkFilter::create($filterlink);
-            }         
+            } 
 
-
-
+            if($input['iprange']!="" || $input['iprange']!=NULL){
+                $filterlink['type']=7;
+                $filterlink['parameter']=$input['iprange'];
+                LinkFilter::create($filterlink);
+            }
+            
             return redirect('/admin/linkList');
         }else{
             Toastr::error('Somthing went wrong!', 'Update Link', ["positionClass" => "toast-top-right"]);
