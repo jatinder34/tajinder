@@ -39,7 +39,8 @@
 
 						<div class="card-body">
 		    	    		<label for="male">IP Range</label>
-		    	    		<input class="form-control form-control-lg mb-3" type="text" placeholder="Ip-Range" value="{{$linkfilterType7->parameter}}" name="iprange" id="iprange">
+		    	    		<?php if($linkfilterType7){ $data7=$linkfilterType7->parameter; }else{ $data7="";} ?> 
+		    	    		<input class="form-control form-control-lg mb-3" type="text" placeholder="Ip-Range" value="{{$data7}}" name="iprange" id="iprange">
 		    	    		<p style="color: red">Note: Please add range like 192.168.1.1 - 192.168.255.255</p>
 		    	    	</div>
 
