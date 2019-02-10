@@ -20,13 +20,13 @@
 		    	    	<input class="form-control form-control-lg mb-3" type="text" placeholder="Name" name="name" id="namelink" required>
 		    	        <input class="form-control form-control-lg mb-3" type="url" placeholder="Affilate Link" name="affilate_link" id="affilate_link" required="">
 		    	        <input class="form-control form-control-lg mb-3" type="url" placeholder="Merchent Link" name="merchent_link" id="merchent_link" required="">
-		    	        <!--select id="filter_category" data-placeholder="Begin typing a name to filter..." name="filters" class="chosen-select form-control form-control-lg mb-3" multiple >
-		    	          @if(!$filters->isEmpty())
-		    	          	@foreach($filters as $filter)
-		    	          		<option value="{{$filter->id}}">{{$filter->filter_name}}</option>
+		    	        <select id="filter_category" data-placeholder="Begin typing a name to filter..." name="isp" class="chosen-select form-control form-control-lg mb-3" >
+		    	          @if(!$isp->isEmpty())
+		    	          	@foreach($isp as $ispp)
+		    	          		<option value="{{$ispp->name}}">{{$ispp->name}}</option>
 		    	          	@endforeach
 		    	          @endif
-		    	        </select-->
+		    	        </select>
 		    	        <div class="card-body">Filters</div>
 		    	    	<div class="card-body">
 		    	    		<label for="male">IP</label>
@@ -35,7 +35,7 @@
 							  <option value="1">Yes</option>
 							</select>
 		    	    	</div>
-		    	    	<div class="card-body">
+		    	    	<!--div class="card-body">
 		    	    		<label for="male">ISP</label>
 		    	    		<select class="form-control form-control-lg mb-3" id="isp" name="isp">
 							  <option value="">Select ISP</option>
@@ -50,7 +50,7 @@
 							  <option value="videocon">Videocon</option>
 							  <option value="connect">Connect</option>
 							</select>
-		    	    	</div>
+		    	    	</div-->
 		    	    	<div class="card-body">
 		    	    		<label for="male">Browser</label>
 		    	    		<select class="form-control form-control-lg mb-3" id="browser" name="browser">
