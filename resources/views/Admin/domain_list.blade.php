@@ -29,14 +29,15 @@
                   <tbody>
                     @if(!$domains->isEmpty())
                         @php
-                            $i = 1;
+                            $i = 0;
                             if(isset($_GET['page'])){
-                                $i =  $_GET['page']*$limit - 2;
+                                $i =  ($_GET['page']-1)*$limit;
                             }
                         @endphp
                       @foreach($domains as $domain)  
                         <tr>
-                          <td>{{$i++}}</td>
+                          @php $i=$i+1; @endphp
+                          <td>{{$i}}</td>
                           <td>{{$domain->name}}</td>
                           <td>
                             <a href="{{url('/admin/editDomain')}}/{{$domain->id}}"><i class="material-icons notranslate">edit</i></a>
