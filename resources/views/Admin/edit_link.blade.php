@@ -38,6 +38,12 @@
 						</select>
 
 						<div class="card-body">
+		    	    		<label for="male">IP Range</label>
+		    	    		<input class="form-control form-control-lg mb-3" type="text" placeholder="Ip-Range" value="{{$linkfilterType7->parameter}}" name="iprange" id="iprange">
+		    	    		<p style="color: red">Note: Please add range like 192.168.1.1 - 192.168.255.255</p>
+		    	    	</div>
+
+						<div class="card-body">
 		    	    		<label for="male">ISP</label>
 		    	    		<select id="filter_category" data-placeholder="Begin typing a name to ISP..." name="isp" class="chosen-select form-control form-control-lg mb-3" >
 			    	            @if(!$isp->isEmpty())

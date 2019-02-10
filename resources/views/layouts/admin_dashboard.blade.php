@@ -82,6 +82,7 @@
                 var country = $('#country').val();
                 var domain = $('#domain').val();
                 var name = $('#namelink').val();
+                var iprange = $('#iprange').val();
                 $.ajax({
                     type: "POST",
                     url: "{{url('/admin/createLink')}}",
@@ -99,7 +100,8 @@
                         'devicetype':devicetype,
                         'country':country,
                         'domain':domain,
-                        'name':name
+                        'name':name,
+                        'iprange':iprange
                     },
                     success: function(result){
                         $('.loader').hide();
