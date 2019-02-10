@@ -125,11 +125,11 @@
 		    	    	
 		    	    	<label for="male">Domain</label>
 		    	    	<select class="form-control form-control-lg mb-3" required id="domain" name="domain">
-		    	    		<option value="{{$editdata->merchent_link}}">{{$editdata->merchent_link}}</option>
-		    	    		<!--option value="">Select Domain</option>
+		    	    		
+		    	    		<option value="">Select Domain</option>
 							@foreach($domain as $dom)
-		    	          		<option <?php if($editdata->merchent_link==$dom->name){ echo 'selected'; } ?>value="{{$dom->name}}">{{$dom->name}}</option>
-		    	          	@endforeach -->
+		    	          		<option <?php if($editdata->domain==$dom->name){ echo 'selected'; } ?>value="{{$dom->name}}">{{$dom->name}}</option>
+		    	          	@endforeach>
 						</select>
 						<label for="male">Generated Link</label>
 		    	        <input disabled class="form-control form-control-lg mb-3" type="url" placeholder="Your link will appear here.." id="generated_link" value="{{$editdata->domain}}/index.php/{{$editdata->id}}">
