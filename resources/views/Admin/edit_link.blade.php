@@ -96,13 +96,13 @@
 	    	    		<select class="form-control form-control-lg mb-3" id="devicetype" name="devicetype">
 	    	    		<?php if($linkfilterType5){  ?>
 	    	    		  <option <?php if($linkfilterType5->parameter==""){echo 'selected';} ?> value="">Select Device Type</option>
-						  <option <?php if($linkfilterType5->parameter=="iOS"){echo 'selected';} ?> value="iOS">iOS</option>
-						  <option <?php if($linkfilterType5->parameter=="Android"){echo 'selected';} ?> value="Android">Android</option>
+						  <option <?php if($linkfilterType5->parameter=="iphone"){echo 'selected';} ?> value="iphone">iOS</option>
+						  <option <?php if($linkfilterType5->parameter=="android"){echo 'selected';} ?> value="android">Android</option>
 						  <option <?php if($linkfilterType5->parameter=="desktop"){echo 'selected';} ?> value="desktop">Desktop</option>
 						<?php }else{ ?>
 						  <option value="">Select Device Type</option>
-						  <option value="iOS">iOS</option>
-						  <option value="Android">Android</option>
+						  <option value="iphone">Iphone</option>
+						  <option value="android">Android</option>
 						  <option value="desktop">Desktop</option>
 						<?php } ?>
 						</select>

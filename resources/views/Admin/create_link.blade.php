@@ -72,8 +72,8 @@
 		    	    		<label for="male">Device Type</label>
 		    	    		<select class="form-control form-control-lg mb-3" id="devicetype" name="devicetype">
 		    	    		  <option value="">Select Device Type</option>
-							  <option value="iOS">iOS</option>
-							  <option value="Android">Android</option>
+							  <option value="iphone">iphone</option>
+							  <option value="android">android</option>
 							  <option value="desktop">Desktop</option>
 							</select>
 		    	    	</div>

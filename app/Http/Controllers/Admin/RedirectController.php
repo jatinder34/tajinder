@@ -82,7 +82,156 @@ class RedirectController extends Controller
         $createlink = CreateLink::find($id);
         $linkfilter = LinkFilter::where('link_id',$createlink->id)->get();
         if(count($linkfilter)>0){
-            //$redirecturl = $createlink->merchent_link;
+            
+            $ch = curl_init();
+            curl_setopt($ch, CURLOPT_URL,'http://ip-api.com/json/'.$ip);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($post));
+            $response = curl_exec($ch);
+            $result = json_decode($response);
+
+            $ipcount=$this->ip($id);
+            $tocheck=0;
+            $totcount=count($linkfilter);
+            foreach ($linkfilter as $filter) {
+                if($filter->type=='1'){
+                    if($ipcount>1){
+                        $tocheck+1;
+                    }
+                }
+                if($filter->type=='2'){
+                    if(strstr(strtolower($result->as), $filter->parameter) || strstr(strtolower($result->isp), $filter->parameter)) {
+                        $tocheck+1;
+                    }else{
+                        if($tocheck>0){
+                            $tocheck-1;
+                        }else{
+                            $tocheck=0;
+                        }
+                    }
+                }
+                if($filter->type=='3'){
+                    if(strstr(strtolower($_SERVER['HTTP_USER_AGENT']), 'mozilla') && strstr(strtolower($_SERVER['HTTP_USER_AGENT']), 'chrome') && strstr(strtolower($_SERVER['HTTP_USER_AGENT']), 'safari')) {
+                        if($filter->parameter=='chrome'){
+                           $tocheck+1; 
+                        }else{
+                            if($tocheck>0){
+                               $tocheck-1;
+                            }else{
+                                $tocheck=0;
+                            }
+                        }
+                    }else if(strstr(strtolower($_SERVER['HTTP_USER_AGENT']), 'mozilla') && strstr(strtolower($_SERVER['HTTP_USER_AGENT']), 'safari')) {
+                        if($filter->parameter=='safari'){
+                           $tocheck+1; 
+                        }else{
+                            if($tocheck>0){
+                               $tocheck-1;
+                            }else{
+                                $tocheck=0;
+                            }
+                        }
+                    }else{
+                        if($filter->parameter=='mozilla'){
+                           $tocheck+1; 
+                        }else{
+                            if($tocheck>0){
+                               $tocheck-1;
+                            }else{
+                                $tocheck=0;
+                            }
+                        }
+                    }
+                }
+                if($filter->type=='4'){
+                    if(strstr(strtolower($_SERVER['HTTP_USER_AGENT']), 'window')) {
+                        if($filter->parameter=='window'){
+                           $tocheck+1; 
+                        }else{
+                            if($tocheck>0){
+                               $tocheck-1;
+                            }else{
+                                $tocheck=0;
+                            }
+                        }
+                    }else if(strstr(strtolower($_SERVER['HTTP_USER_AGENT']), 'mac')) {
+                        if($filter->parameter=='mac'){
+                           $tocheck+1; 
+                        }else{
+                            if($tocheck>0){
+                               $tocheck-1;
+                            }else{
+                                $tocheck=0;
+                            }
+                        }
+                    }else{
+                        if($filter->parameter=='ubuntu'){
+                           $tocheck+1; 
+                        }else{
+                            if($tocheck>0){
+                               $tocheck-1;
+                            }else{
+                                $tocheck=0;
+                            }
+                        }
+                    }
+                }
+                if($filter->type=='5'){
+                    if(strstr(strtolower($_SERVER['HTTP_USER_AGENT']), 'mobile') || strstr(strtolower($_SERVER['HTTP_USER_AGENT']), 'android') || strstr(strtolower($_SERVER['HTTP_USER_AGENT']), 'iphone')) {
+                            if(strstr(strtolower($_SERVER['HTTP_USER_AGENT']), 'iphone')){
+                                if($filter->parameter=='iphone'){
+                                   $tocheck+1; 
+                                }else{
+                                    if($tocheck>0){
+                                       $tocheck-1;
+                                    }else{
+                                        $tocheck=0;
+                                    }
+                                }
+                            }else if(strstr(strtolower($_SERVER['HTTP_USER_AGENT']), 'android')) {
+                                if($filter->parameter=='android'){
+                                   $tocheck+1; 
+                                }else{
+                                    if($tocheck>0){
+                                       $tocheck-1;
+                                    }else{
+                                        $tocheck=0;
+                                    }
+                                }
+                            }else{
+                                if($filter->parameter=='desktop'){
+                                   $tocheck+1; 
+                                }else{
+                                    if($tocheck>0){
+                                       $tocheck-1;
+                                    }else{
+                                        $tocheck=0;
+                                    }
+                                }
+                            }
+                        }
+                }
+                if($filter->type=='6'){
+                    if(strstr(strtolower($result->country), strtolower($filter->parameter)) {
+                        $tocheck+1;
+                    }else{
+                        if($tocheck>0){
+                            $tocheck-1;
+                        }else{
+                            $tocheck=0;
+                        }
+                    }
+                }
+            }
+            if($tocheck>0){
+                if($tocheck==$totcount){
+                    $redirecturl = $createlink->merchent_link;
+                }else{
+                    $redirecturl = $createlink->affilate_link;
+                }
+            }else{
+                $redirecturl = $createlink->affilate_link;
+            }
         }else{
             $redirecturl = $createlink->affilate_link;
         }
@@ -120,7 +269,7 @@ class RedirectController extends Controller
         if($track){
            $track->click_count =  $track->click_count + 1;
            if($track->save()){
-            return true;
+            return $data=$track->click_count;
            }
         }else{
             $input = [
@@ -133,7 +282,7 @@ class RedirectController extends Controller
 
             ];
             if(RedirectLinkTrack::create($input)){
-                return true;
+                return $data=1;
             }
         }
     }
