@@ -82,7 +82,7 @@ class RedirectController extends Controller
         $createlink = CreateLink::find($id);
         $linkfilter = LinkFilter::where('link_id',$createlink->id)->get();
         if(count($linkfilter)>0){
-            
+            $post = [];
             $ch = curl_init();
             curl_setopt($ch, CURLOPT_URL,'http://ip-api.com/json/'.$ip);
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
