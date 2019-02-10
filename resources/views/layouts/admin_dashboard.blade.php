@@ -218,6 +218,42 @@
                 });
             });
 
+            $(document).on('click','.deleteIsp',function(){
+                var ispid = $(this).attr('data-id');
+                var btn = $(this);
+                swal({
+                    buttons: {
+                        cancel: true,
+                        confirm: true,
+                    },
+                    title: "Delete ISP",
+                    text: "Are you want to delete this ISP?",
+                })
+                .then((willDelete) => {
+                    if (willDelete) {
+                        $.ajax({
+                            type: "POST",
+                            url: "{{url('/admin/deleteIsp')}}",
+                            headers: {
+                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                            },
+                            dataType:'json',
+                            data: {
+                                'id':ispid,
+                            },
+                            success: function(result){
+                                if(result.success){
+                                    toastr.success(result.message, 'Delete Domain', {timeOut: 5000});
+                                    $(btn).closest('tr').remove();
+                                }else{
+                                    toastr.error(result.message, 'Delete Domain', {timeOut: 5000});
+                                }
+                            }
+                        });
+                    }
+                });
+            });
+
             $(".chosen-select").chosen({
               no_results_text: "Oops, nothing found!"
             })
