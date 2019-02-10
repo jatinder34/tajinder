@@ -264,7 +264,6 @@ class RedirectController extends Controller
                                     $tocheck=0;
                                 } 
                             }
-                            $ip
                         }else{
                             if($tocheck>0){
                                 $tocheck=$tocheck-1;
