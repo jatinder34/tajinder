@@ -18,7 +18,7 @@
 		    	  <!-- Add New Post Form -->
 		    	  <div class="card card-small mb-3">
 		    	    <div class="card-body">
-		    	        <input class="form-control form-control-lg mb-3" type="text" placeholder="Filter category" name="name" id="isp_name" required>
+		    	        <input class="form-control form-control-lg mb-3" type="text" placeholder="ISP Name" name="name" id="isp_name" required>
 	    	      	</div>
 	    	      	<div class="ml-3 mb-3">
 		    			<button class="btn btn-accent" id="generate_link">
