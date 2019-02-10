@@ -40,7 +40,8 @@
                         @endphp
 	                  	@foreach($createlinks as $links)
 		                    <tr>
-		                      <td>{{$i+1}}</td>
+                          @php $i=$i+1; @endphp
+		                      <td>{{$i}}</td>
 		                      <td class="text-left">
                             <a target="_blank" href="{{$links->affilate_link}}">{{$links->affilate_link}}</a>
                           </td>
