@@ -6,11 +6,11 @@
 	    <!-- Page Header -->
 	    <div class="page-header row no-gutters py-4">
 	      <div class="col-12 col-sm-4 text-center text-sm-left mb-0">
-	        <span class="text-uppercase page-subtitle">Edit Filter Category</span>
+	        <span class="text-uppercase page-subtitle">Edit ISP</span>
 	      </div>
 	    </div>
 	    <!-- End Page Header -->
-	    @if($filter)
+	    @if($isp)
 		    <!-- Small Stats Blocks -->
 		    <div class="row">
 		    	<form style="width: 100%" method="post" id="edit_isp" action="{{url('/admin/editisp')}}">
