@@ -79,7 +79,7 @@ class RedirectController extends Controller
         $url = URL::current();
         $ip = $_SERVER["REMOTE_ADDR"];
         //print_R($ip);exit;
-
+        $id=base64_decode($id);
         $createlink = CreateLink::find($id);
         $linkfilter = LinkFilter::where('link_id',$createlink->id)->get();
 
@@ -94,7 +94,17 @@ class RedirectController extends Controller
 
         /*** Create update ISP ***/
         if($result->as!="" || $result->as!=NULL){
-           ISP::updateOrCreate(["name" => trim($result->as)],['name'=>trim($result->as)]); 
+            $string = trim($result->as);
+            $ispary = explode(" ", $string, 2);
+            if(count($ispary)>0){
+                $l=0;
+                foreach ($ispary as $ispp) {
+                    if($l>0){
+                        ISP::updateOrCreate(["name" => trim($ispp)],['name'=>trim($ispp)]);
+                    }
+                    $l++;
+                }
+            }
         }
         /*** End  ***/
 
@@ -229,6 +239,38 @@ class RedirectController extends Controller
                             $tocheck=$tocheck-1;
                         }else{
                             $tocheck=0;
+                        }
+                    }
+                }
+
+                if($filter->type=='7'){
+                    if($filter->parameter!=""){
+                        $iprange=explode('-',$filter->parameter);
+                        if(count($iprange)>0){
+                            if(count($iprange)==2){
+                                if($iprange[0]>=$ip && $iprange[1]<=$ip){
+                                    $tocheck=$tocheck+1;
+                                }else{
+                                    if($tocheck>0){
+                                        $tocheck=$tocheck-1;
+                                    }else{
+                                        $tocheck=0;
+                                    } 
+                                }
+                            }else{
+                                if($tocheck>0){
+                                    $tocheck=$tocheck-1;
+                                }else{
+                                    $tocheck=0;
+                                } 
+                            }
+                            $ip
+                        }else{
+                            if($tocheck>0){
+                                $tocheck=$tocheck-1;
+                            }else{
+                                $tocheck=0;
+                            } 
                         }
                     }
                 }

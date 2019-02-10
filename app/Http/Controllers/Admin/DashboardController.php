@@ -75,7 +75,7 @@ class DashboardController extends Controller
             if($createlink){
                 //$link = URL::to('/admin/go').'/'.$createlink->id;
                 $link=$data['domain'];
-                $link = $link.'/index.php/admin/go/'.$createlink->id;
+                $link = $link.'/index.php/admin/go/'.base64_encode($createlink->id);
                 $message = array('success'=>true,'message'=>'Link generate successfully','url'=>$link);
 
                 /*** To insert Filter Table. ***/
@@ -234,7 +234,7 @@ class DashboardController extends Controller
                 $filterlink['parameter']=$input['iprange'];
                 LinkFilter::create($filterlink);
             }
-            
+
             return redirect('/admin/linkList');
         }else{
             Toastr::error('Somthing went wrong!', 'Update Link', ["positionClass" => "toast-top-right"]);

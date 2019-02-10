@@ -53,10 +53,10 @@
                           <td>{{$links->click_count}}</td>
 		                      <td>{{$links->uniqueCount}}</td>
 		                      <td>
-                            <a target="_blank" href="{{$links->domain}}/index.php/admin/go/{{$links->id}}">{{$links->domain}}/index.php/admin/go/{{$links->id}}</a>
+                            <a target="_blank" href="{{$links->domain}}/index.php/admin/go/{{base64_encode($links->id)}}">{{$links->domain}}/index.php/admin/go/{{$links->id}}</a>
                           </td>
 		                      <td>
-		                      	<a target="_blank" href="{{$links->domain}}/index.php/admin/go/{{$links->id}}"><i class="material-icons notranslate">visibility</i></a>
+		                      	<a target="_blank" href="{{$links->domain}}/index.php/admin/go/{{base64_encode($links->id)}}"><i class="material-icons notranslate">visibility</i></a>
 		                      	<a href="{{url('/admin/editLink')}}/{{$links->id}}"><i class="material-icons notranslate">edit</i></a>
 		                      	<a href="javascript:void(0)" data-id="{{$links->id}}" class="deleteLink"><i class="material-icons notranslate">delete</i></a>
 		                      </td>
