@@ -31,7 +31,7 @@
 		    	    	</div>
 		    	    	<div class="card-body">
 		    	    		<label for="male">ISP</label>
-		    	    		<select id="filter_category" data-placeholder="Begin typing a name to filter..." name="isp" class="chosen-select form-control form-control-lg mb-3" >
+		    	    		<select id="filter_category" data-placeholder="Begin typing a name to ISP..." name="isp" class="chosen-select form-control form-control-lg mb-3" >
 			    	            @if(!$isp->isEmpty())
 			    	          	    @foreach($isp as $ispp)
 			    	          			<option value="{{$ispp->name}}">{{$ispp->name}}</option>
