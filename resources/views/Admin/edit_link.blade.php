@@ -98,12 +98,12 @@
 	    	    		  <option <?php if($linkfilterType5->parameter==""){echo 'selected';} ?> value="">Select Device Type</option>
 						  <option <?php if($linkfilterType5->parameter=="iphone"){echo 'selected';} ?> value="iphone">iOS</option>
 						  <option <?php if($linkfilterType5->parameter=="android"){echo 'selected';} ?> value="android">Android</option>
-						  <option <?php if($linkfilterType5->parameter=="desktop"){echo 'selected';} ?> value="desktop">Desktop</option>
+						  <option <?php if($linkfilterType5->parameter=="desktop"){echo 'selected';} ?> value="desktop">Web</option>
 						<?php }else{ ?>
 						  <option value="">Select Device Type</option>
 						  <option value="iphone">Iphone</option>
 						  <option value="android">Android</option>
-						  <option value="desktop">Desktop</option>
+						  <option value="desktop">Web</option>
 						<?php } ?>
 						</select>
 		    	    	

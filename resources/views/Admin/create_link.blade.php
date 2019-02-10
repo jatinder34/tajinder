@@ -74,7 +74,7 @@
 		    	    		  <option value="">Select Device Type</option>
 							  <option value="iphone">iphone</option>
 							  <option value="android">android</option>
-							  <option value="desktop">Desktop</option>
+							  <option value="desktop">Web</option>
 							</select>
 		    	    	</div>
 		    	    	<div class="card-body">
