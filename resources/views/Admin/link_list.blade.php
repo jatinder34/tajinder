@@ -63,7 +63,7 @@
                     @else
                     <tr>
                     	<td colspan="6">
-                    		<h4 class="mb-0 mt-2">There are no links.</h4>
+                    		<h4 class="mb-0 mt-2">No Data Found.</h4>
                     	</td>
                     </tr>
                     @endif

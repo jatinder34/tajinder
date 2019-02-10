@@ -66,7 +66,7 @@ class DashboardController extends Controller
             if($createlink){
                 //$link = URL::to('/admin/go').'/'.$createlink->id;
                 $link=$data['domain'];
-                $link = $link.'/index.php/'.$createlink->id;
+                $link = $link.'/index.php/admin/go/'.$createlink->id;
                 $message = array('success'=>true,'message'=>'Link generate successfully','url'=>$link);
 
                 /*** To insert Filter Table. ***/
