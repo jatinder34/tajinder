@@ -51,7 +51,7 @@ Route::group(['prefix' => 'admin'], function () {
 	
 	Route::get('/addIsp', 'Admin\DashboardController@addIsp');
 	Route::post('/addIsp', 'Admin\DashboardController@insertIsp');
-	Route::get('/editisp/{id}', 'Admin\DashboardController@editIsp');
+	Route::get('/editIsp/{id}', 'Admin\DashboardController@editIsp');
 	Route::post('/editIsp', 'Admin\DashboardController@updateIsp');
 	Route::post('/deleteIsp', 'Admin\DashboardController@deleteIsp');
 	Route::get('/ispList', 'Admin\DashboardController@ispList');
