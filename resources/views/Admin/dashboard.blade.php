@@ -10,19 +10,18 @@
 	        <h3 class="page-title">Overview</h3>
 	      </div>
 	    </div>
-	    <!-- End Page Header -->
-	    <!-- Small Stats Blocks -->
+	    
 	    <div class="row">
 	      <div class="col-lg col-md-6 col-sm-6 mb-4">
 	        <div class="stats-small stats-small--1 card card-small">
 	          <div class="card-body p-0 d-flex">
 	            <div class="d-flex flex-column m-auto">
 	              <div class="stats-small__data text-center">
-	                <span class="stats-small__label text-uppercase">Posts</span>
-	                <h6 class="stats-small__value count my-3">2,390</h6>
+	                <span class="stats-small__label text-uppercase">Total Link</span>
+	                <h6 class="stats-small__value count my-3">{{$totallink}}</h6>
 	              </div>
 	              <div class="stats-small__data">
-	                <span class="stats-small__percentage stats-small__percentage--increase">4.7%</span>
+	                <span class="stats-small__percentage stats-small__percentage--increase"></span>
 	              </div>
 	            </div>
 	            <canvas height="120" class="blog-overview-stats-small-1"></canvas>
@@ -34,11 +33,11 @@
 	          <div class="card-body p-0 d-flex">
 	            <div class="d-flex flex-column m-auto">
 	              <div class="stats-small__data text-center">
-	                <span class="stats-small__label text-uppercase">Pages</span>
-	                <h6 class="stats-small__value count my-3">182</h6>
+	                <span class="stats-small__label text-uppercase">Total Domain</span>
+	                <h6 class="stats-small__value count my-3">{{$totaldomain}}</h6>
 	              </div>
 	              <div class="stats-small__data">
-	                <span class="stats-small__percentage stats-small__percentage--increase">12.4%</span>
+	                <span class="stats-small__percentage stats-small__percentage--increase"></span>
 	              </div>
 	            </div>
 	            <canvas height="120" class="blog-overview-stats-small-2"></canvas>
@@ -50,7 +49,7 @@
 	          <div class="card-body p-0 d-flex">
 	            <div class="d-flex flex-column m-auto">
 	              <div class="stats-small__data text-center">
-	                <span class="stats-small__label text-uppercase">Comments</span>
+	                <span class="stats-small__label text-uppercase">Top Domain</span>
 	                <h6 class="stats-small__value count my-3">8,147</h6>
 	              </div>
 	              <div class="stats-small__data">
@@ -66,7 +65,7 @@
 	          <div class="card-body p-0 d-flex">
 	            <div class="d-flex flex-column m-auto">
 	              <div class="stats-small__data text-center">
-	                <span class="stats-small__label text-uppercase">Users</span>
+	                <span class="stats-small__label text-uppercase">Total Clicks</span>
 	                <h6 class="stats-small__value count my-3">2,413</h6>
 	              </div>
 	              <div class="stats-small__data">
@@ -82,7 +81,7 @@
 	          <div class="card-body p-0 d-flex">
 	            <div class="d-flex flex-column m-auto">
 	              <div class="stats-small__data text-center">
-	                <span class="stats-small__label text-uppercase">Subscribers</span>
+	                <span class="stats-small__label text-uppercase">Unique Clicks</span>
 	                <h6 class="stats-small__value count my-3">17,281</h6>
 	              </div>
 	              <div class="stats-small__data">
@@ -94,10 +93,8 @@
 	        </div>
 	      </div>
 	    </div>
-	    <!-- End Small Stats Blocks -->
-	    <div class="row">
-	      <!-- Users Stats -->
-	      <div class="col-lg-8 col-md-12 col-sm-12 mb-4">
+	    
+	      <!--div class="col-lg-8 col-md-12 col-sm-12 mb-4">
 	        <div class="card card-small">
 	          <div class="card-header border-bottom">
 	            <h6 class="m-0">Users</h6>
@@ -123,8 +120,7 @@
 	          </div>
 	        </div>
 	      </div>
-	      <!-- End Users Stats -->
-	      <!-- Users By Device Stats -->
+	      
 	      <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
 	        <div class="card card-small h-100">
 	          <div class="card-header border-bottom">
@@ -149,8 +145,8 @@
 	            </div>
 	          </div>
 	        </div>
-	      </div>
-	      <!-- End Users By Device Stats -->
+	      </div-->
+	      
 	    </div>
   	</div>
   	@include('Admin.footer')
