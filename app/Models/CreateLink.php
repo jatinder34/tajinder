@@ -15,7 +15,7 @@ class CreateLink extends Model
     protected $table = 'create_links';
 
     protected $fillable = [
-        'affilate_link', 'merchent_link', 'filter_by','domain',
+        'affilate_link', 'merchent_link', 'filter_by','domain','name'
     ];
 
     public function redirectCount()
