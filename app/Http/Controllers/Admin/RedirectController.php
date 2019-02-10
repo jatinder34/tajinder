@@ -96,15 +96,15 @@ class RedirectController extends Controller
             foreach ($linkfilter as $filter) {
                 if($filter->type=='1'){
                     if($ipcount>1){
-                        $tocheck+1;
+                        $tocheck=$tocheck+1;
                     }
                 }
                 if($filter->type=='2'){
                     if(strstr(strtolower($result->as), $filter->parameter) || strstr(strtolower($result->isp), $filter->parameter)) {
-                        $tocheck+1;
+                        $tocheck=$tocheck+1;
                     }else{
                         if($tocheck>0){
-                            $tocheck-1;
+                            $tocheck=$tocheck-1;
                         }else{
                             $tocheck=0;
                         }
@@ -113,30 +113,30 @@ class RedirectController extends Controller
                 if($filter->type=='3'){
                     if(strstr(strtolower($_SERVER['HTTP_USER_AGENT']), 'mozilla') && strstr(strtolower($_SERVER['HTTP_USER_AGENT']), 'chrome') && strstr(strtolower($_SERVER['HTTP_USER_AGENT']), 'safari')) {
                         if($filter->parameter=='chrome'){
-                           $tocheck+1; 
+                           $tocheck=$tocheck+1; 
                         }else{
                             if($tocheck>0){
-                               $tocheck-1;
+                               $tocheck=$tocheck-1;
                             }else{
                                 $tocheck=0;
                             }
                         }
                     }else if(strstr(strtolower($_SERVER['HTTP_USER_AGENT']), 'mozilla') && strstr(strtolower($_SERVER['HTTP_USER_AGENT']), 'safari')) {
                         if($filter->parameter=='safari'){
-                           $tocheck+1; 
+                            $tocheck=$tocheck+1; 
                         }else{
                             if($tocheck>0){
-                               $tocheck-1;
+                               $tocheck=$tocheck-1;
                             }else{
                                 $tocheck=0;
                             }
                         }
                     }else{
                         if($filter->parameter=='mozilla'){
-                           $tocheck+1; 
+                            $tocheck=$tocheck+1; 
                         }else{
                             if($tocheck>0){
-                               $tocheck-1;
+                               $tocheck=$tocheck-1;
                             }else{
                                 $tocheck=0;
                             }
@@ -146,30 +146,30 @@ class RedirectController extends Controller
                 if($filter->type=='4'){
                     if(strstr(strtolower($_SERVER['HTTP_USER_AGENT']), 'window')) {
                         if($filter->parameter=='window'){
-                           $tocheck+1; 
+                            $tocheck=$tocheck+1; 
                         }else{
                             if($tocheck>0){
-                               $tocheck-1;
+                                $tocheck=$tocheck-1;
                             }else{
                                 $tocheck=0;
                             }
                         }
                     }else if(strstr(strtolower($_SERVER['HTTP_USER_AGENT']), 'mac')) {
                         if($filter->parameter=='mac'){
-                           $tocheck+1; 
+                            $tocheck=$tocheck+1; 
                         }else{
                             if($tocheck>0){
-                               $tocheck-1;
+                                $tocheck=$tocheck-1;
                             }else{
                                 $tocheck=0;
                             }
                         }
                     }else{
                         if($filter->parameter=='ubuntu'){
-                           $tocheck+1; 
+                            $tocheck=$tocheck+1; 
                         }else{
                             if($tocheck>0){
-                               $tocheck-1;
+                               $tocheck=$tocheck-1;
                             }else{
                                 $tocheck=0;
                             }
@@ -180,30 +180,30 @@ class RedirectController extends Controller
                     if(strstr(strtolower($_SERVER['HTTP_USER_AGENT']), 'mobile') || strstr(strtolower($_SERVER['HTTP_USER_AGENT']), 'android') || strstr(strtolower($_SERVER['HTTP_USER_AGENT']), 'iphone')) {
                             if(strstr(strtolower($_SERVER['HTTP_USER_AGENT']), 'iphone')){
                                 if($filter->parameter=='iphone'){
-                                   $tocheck+1; 
+                                   $tocheck=$tocheck+1; 
                                 }else{
                                     if($tocheck>0){
-                                       $tocheck-1;
+                                       $tocheck=$tocheck-1;
                                     }else{
                                         $tocheck=0;
                                     }
                                 }
                             }else if(strstr(strtolower($_SERVER['HTTP_USER_AGENT']), 'android')) {
                                 if($filter->parameter=='android'){
-                                   $tocheck+1; 
+                                    $tocheck=$tocheck+1; 
                                 }else{
                                     if($tocheck>0){
-                                       $tocheck-1;
+                                       $tocheck=$tocheck-1;
                                     }else{
                                         $tocheck=0;
                                     }
                                 }
                             }else{
                                 if($filter->parameter=='desktop'){
-                                   $tocheck+1; 
+                                    $tocheck=$tocheck+1; 
                                 }else{
                                     if($tocheck>0){
-                                       $tocheck-1;
+                                       $tocheck=$tocheck-1;
                                     }else{
                                         $tocheck=0;
                                     }
@@ -213,10 +213,10 @@ class RedirectController extends Controller
                 }
                 if($filter->type=='6'){
                     if(strstr(strtolower($result->country), strtolower($filter->parameter)) {
-                        $tocheck+1;
+                        $tocheck=$tocheck+1;
                     }else{
                         if($tocheck>0){
-                            $tocheck-1;
+                            $tocheck=$tocheck-1;
                         }else{
                             $tocheck=0;
                         }
