@@ -20,13 +20,7 @@
 		    	    	<input class="form-control form-control-lg mb-3" type="text" placeholder="Name" name="name" id="namelink" required>
 		    	        <input class="form-control form-control-lg mb-3" type="url" placeholder="Affilate Link" name="affilate_link" id="affilate_link" required="">
 		    	        <input class="form-control form-control-lg mb-3" type="url" placeholder="Merchent Link" name="merchent_link" id="merchent_link" required="">
-		    	        <select id="filter_category" data-placeholder="Begin typing a name to filter..." name="isp" class="chosen-select form-control form-control-lg mb-3" >
-		    	          @if(!$isp->isEmpty())
-		    	          	@foreach($isp as $ispp)
-		    	          		<option value="{{$ispp->name}}">{{$ispp->name}}</option>
-		    	          	@endforeach
-		    	          @endif
-		    	        </select>
+		    	        
 		    	        <div class="card-body">Filters</div>
 		    	    	<div class="card-body">
 		    	    		<label for="male">IP</label>
@@ -34,6 +28,16 @@
 							  <option selected value="0">No</option>
 							  <option value="1">Yes</option>
 							</select>
+		    	    	</div>
+		    	    	<div class="card-body">
+		    	    		<label for="male">ISP</label>
+		    	    		<select id="filter_category" data-placeholder="Begin typing a name to filter..." name="isp" class="chosen-select form-control form-control-lg mb-3" >
+			    	            @if(!$isp->isEmpty())
+			    	          	    @foreach($isp as $ispp)
+			    	          			<option value="{{$ispp->name}}">{{$ispp->name}}</option>
+			    	          		@endforeach
+			    	          	@endif
+		    	        	</select>
 		    	    	</div>
 		    	    	<!--div class="card-body">
 		    	    		<label for="male">ISP</label>
