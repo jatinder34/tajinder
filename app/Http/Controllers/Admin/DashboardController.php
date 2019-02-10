@@ -321,6 +321,7 @@ class DashboardController extends Controller
                 return redirect('/admin/adddomain');
             }
         }else{
+            $input['name']=trim(rtrim($input['name'],'/'));
             $filter = Domain::create($input);
             if($filter){
                 Toastr::success('Domain added successfully.', 'Success', ["positionClass" => "toast-top-right"]);
@@ -359,7 +360,8 @@ class DashboardController extends Controller
             }
         }else{
             $domain = Domain::find($input['id']);
-            $domain->name = $input['name'];
+            $domain->name=trim(rtrim($input['name'],'/'));
+            //$domain->name = $input['name'];
             if($domain->save()){
                 Toastr::success('Domain updated successfully.', 'Success', ["positionClass" => "toast-top-right"]);
                 return redirect('/admin/domainList');
