@@ -74,16 +74,16 @@ class RedirectController extends Controller
 
     */
 
-    public function redirectLink(Request $request,$id)
+    public function redirectLinkOld(Request $request,$id)
     {
         $url = URL::current();
         $ip = $_SERVER["REMOTE_ADDR"];
-        //print_R($ip);exit;
+        
         $id=base64_decode($id);
         $createlink = CreateLink::find($id);
         $linkfilter = LinkFilter::where('link_id',$createlink->id)->get();
 
-        /*** To fetch ISP. ***/
+        
         $post = [];
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL,'http://ip-api.com/json/'.$ip);
@@ -92,7 +92,7 @@ class RedirectController extends Controller
         $response = curl_exec($ch);
         $result = json_decode($response);
 
-        /*** Create update ISP ***/
+        
         if($result->as!="" || $result->as!=NULL){
             $string = trim($result->as);
             $ispary = explode(" ", $string, 2);
@@ -106,9 +106,8 @@ class RedirectController extends Controller
                 }
             }
         }
-        /*** End  ***/
+        
 
-        /*** End. ***/
         if(count($linkfilter)>0){
             $ipcount=$this->ip($id);
             $tocheck=0;
@@ -289,6 +288,234 @@ class RedirectController extends Controller
         }
         return redirect($redirecturl);
     }
+
+
+    public function redirectLink(Request $request,$id)
+    {
+        $url = URL::current();
+        $ip = $_SERVER["REMOTE_ADDR"];
+        
+        $id=base64_decode($id);
+        $createlink = CreateLink::find($id);
+        $linkfilter = LinkFilter::where('link_id',$createlink->id)->get();
+
+        
+        $post = [];
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL,'http://ip-api.com/json/'.$ip);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($post));
+        $response = curl_exec($ch);
+        $result = json_decode($response);
+
+        
+        if($result->as!="" || $result->as!=NULL){
+            $string = trim($result->as);
+            $ispary = explode(" ", $string, 2);
+            if(count($ispary)>0){
+                $l=0;
+                foreach ($ispary as $ispp) {
+                    if($l>0){
+                        ISP::updateOrCreate(["name" => trim($ispp)],['name'=>trim($ispp)]);
+                    }
+                    $l++;
+                }
+            }
+        }
+        
+
+        if(count($linkfilter)>0){
+            $ipcount=$this->ip($id);
+            $tocheck=0;
+            $totcount=count($linkfilter);
+            foreach ($linkfilter as $filter) {
+                if($filter->type=='1'){
+                    if($ipcount>1){
+                        $tocheck=$tocheck+1;
+                    }
+                }
+                if($filter->type=='2'){
+                    if(strstr(strtolower($result->as), $filter->parameter) || strstr(strtolower($result->isp), $filter->parameter)) {
+                        $tocheck=$tocheck+1;
+                    }else{
+                        if($tocheck>0){
+                            $tocheck=$tocheck-1;
+                        }else{
+                            $tocheck=0;
+                        }
+                    }
+                }
+                if($filter->type=='3'){
+                    if(strstr(strtolower($_SERVER['HTTP_USER_AGENT']), 'mozilla') && strstr(strtolower($_SERVER['HTTP_USER_AGENT']), 'chrome') && strstr(strtolower($_SERVER['HTTP_USER_AGENT']), 'safari')) {
+                        
+                        $params=explode(',',strtolower($filter->parameter));
+
+                        if (in_array("chrome", $params)){
+                            $tocheck=$tocheck+1; 
+                        }else{
+                            if($tocheck>0){
+                               $tocheck=$tocheck-1;
+                            }else{
+                                $tocheck=0;
+                            }
+                        }
+                    }else if(strstr(strtolower($_SERVER['HTTP_USER_AGENT']), 'mozilla') && strstr(strtolower($_SERVER['HTTP_USER_AGENT']), 'safari')) {
+                        $params=explode(',',strtolower($filter->parameter));
+                        if (in_array("safari", $params)){
+                            $tocheck=$tocheck+1; 
+                        }else{
+                            if($tocheck>0){
+                               $tocheck=$tocheck-1;
+                            }else{
+                                $tocheck=0;
+                            }
+                        }
+                    }else{
+                        $params=explode(',',strtolower($filter->parameter));
+                        if (in_array("mozilla", $params)){
+                            $tocheck=$tocheck+1; 
+                        }else{
+                            if($tocheck>0){
+                               $tocheck=$tocheck-1;
+                            }else{
+                                $tocheck=0;
+                            }
+                        }
+                    }
+                }
+                if($filter->type=='4'){
+                    if(strstr(strtolower($_SERVER['HTTP_USER_AGENT']), 'window')) {
+                        $params=explode(',',strtolower($filter->parameter));
+                        if (in_array("window", $params)){
+                            $tocheck=$tocheck+1; 
+                        }else{
+                            if($tocheck>0){
+                               $tocheck=$tocheck-1;
+                            }else{
+                                $tocheck=0;
+                            }
+                        }
+                    }else if(strstr(strtolower($_SERVER['HTTP_USER_AGENT']), 'mac')) {
+                        $params=explode(',',strtolower($filter->parameter));
+                        if (in_array("mac", $params)){
+                            $tocheck=$tocheck+1; 
+                        }else{
+                            if($tocheck>0){
+                               $tocheck=$tocheck-1;
+                            }else{
+                                $tocheck=0;
+                            }
+                        }
+                    }else{
+                        $params=explode(',',strtolower($filter->parameter));
+                        if (in_array("ubuntu", $params)){
+                            $tocheck=$tocheck+1; 
+                        }else{
+                            if($tocheck>0){
+                               $tocheck=$tocheck-1;
+                            }else{
+                                $tocheck=0;
+                            }
+                        }
+                    }
+                }
+                if($filter->type=='5'){
+                    if(strstr(strtolower($_SERVER['HTTP_USER_AGENT']), 'mobile') || strstr(strtolower($_SERVER['HTTP_USER_AGENT']), 'android') || strstr(strtolower($_SERVER['HTTP_USER_AGENT']), 'iphone')) {
+                            if(strstr(strtolower($_SERVER['HTTP_USER_AGENT']), 'iphone')){
+                                $params=explode(',',strtolower($filter->parameter));
+                                if (in_array("iphone", $params)){
+                                    $tocheck=$tocheck+1; 
+                                }else{
+                                    if($tocheck>0){
+                                       $tocheck=$tocheck-1;
+                                    }else{
+                                        $tocheck=0;
+                                    }
+                                }
+                            }else if(strstr(strtolower($_SERVER['HTTP_USER_AGENT']), 'android')) {
+                                $params=explode(',',strtolower($filter->parameter));
+                                if (in_array("android", $params)){
+                                    $tocheck=$tocheck+1; 
+                                }else{
+                                    if($tocheck>0){
+                                       $tocheck=$tocheck-1;
+                                    }else{
+                                        $tocheck=0;
+                                    }
+                                }
+                            }else{
+                                $params=explode(',',strtolower($filter->parameter));
+                                if (in_array("desktop", $params)){
+                                    $tocheck=$tocheck+1; 
+                                }else{
+                                    if($tocheck>0){
+                                       $tocheck=$tocheck-1;
+                                    }else{
+                                        $tocheck=0;
+                                    }
+                                }
+                            }
+                        }
+                }
+                if($filter->type=='6'){
+                    $params=explode(',',strtolower($filter->parameter));
+                    if (in_array(strtolower($result->country), $params)){
+                        $tocheck=$tocheck+1;
+                    }else{
+                        if($tocheck>0){
+                            $tocheck=$tocheck-1;
+                        }else{
+                            $tocheck=0;
+                        }
+                    }
+                }
+                if($filter->type=='7'){
+                    if($filter->parameter!=""){
+                        $iprange=explode('-',$filter->parameter);
+                        if(count($iprange)>0){
+                            if(count($iprange)==2){
+                                if($iprange[0]>=$ip && $iprange[1]<=$ip){
+                                    $tocheck=$tocheck+1;
+                                }else{
+                                    if($tocheck>0){
+                                        $tocheck=$tocheck-1;
+                                    }else{
+                                        $tocheck=0;
+                                    } 
+                                }
+                            }else{
+                                if($tocheck>0){
+                                    $tocheck=$tocheck-1;
+                                }else{
+                                    $tocheck=0;
+                                } 
+                            }
+                        }else{
+                            if($tocheck>0){
+                                $tocheck=$tocheck-1;
+                            }else{
+                                $tocheck=0;
+                            } 
+                        }
+                    }
+                }
+            }
+            if($tocheck>0){
+                if($tocheck==$totcount){
+                    $redirecturl = $createlink->merchent_link;
+                }else{
+                    $redirecturl = $createlink->affilate_link;
+                }
+            }else{
+                $redirecturl = $createlink->affilate_link;
+            }
+        }else{
+            $ipcount=$this->ip($id);
+            $redirecturl = $createlink->affilate_link;
+        }
+        return redirect($redirecturl);
+    }
+
 
     public function ISPCarrier($linkid)
     {
