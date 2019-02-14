@@ -91,31 +91,31 @@ class DashboardController extends Controller
 
                 if($input['isp']!="" || $input['isp']!=NULL){
                     $filterlink['type']=2;
-                    $filterlink['parameter']=$input['isp'];
+                    $filterlink['parameter']=implode(',',$input['isp']);
                     LinkFilter::create($filterlink);
                 }
 
                 if($input['browser']!="" || $input['browser']!=NULL){
                     $filterlink['type']=3;
-                    $filterlink['parameter']=$input['browser'];
+                    $filterlink['parameter']=implode(',',$input['browser']);
                     LinkFilter::create($filterlink);
                 }
 
                 if($input['os']!="" || $input['os']!=NULL){
                     $filterlink['type']=4;
-                    $filterlink['parameter']=$input['os'];
+                    $filterlink['parameter']=implode(',',$input['os']);
                     LinkFilter::create($filterlink);
                 }
 
                 if($input['devicetype']!="" || $input['devicetype']!=NULL){
                     $filterlink['type']=5;
-                    $filterlink['parameter']=$input['devicetype'];
+                    $filterlink['parameter']=implode(',',$input['devicetype']);
                     LinkFilter::create($filterlink);
                 }
 
                 if($input['country']!="" || $input['country']!=NULL){
                     $filterlink['type']=6;
-                    $filterlink['parameter']=$input['country'];
+                    $filterlink['parameter']=implode(',',$input['country']);
                     LinkFilter::create($filterlink);
                 }
 
@@ -190,50 +190,49 @@ class DashboardController extends Controller
             $deleteFilter = LinkFilter::where('link_id',$input['id'])->delete();
 
             /** Filter By Ip. ***/
-            
-            $filterlink=array();
-            $filterlink['link_id']=$input['id'];
-            if($input['ip']>0){
-                $filterlink['type']=1;
-                $filterlink['parameter']=$input['ip'];
-                LinkFilter::create($filterlink);
-            }
+                $filterlink=array();
+                $filterlink['link_id']=$input['id'];
+                if($input['ip']>0){
+                    $filterlink['type']=1;
+                    $filterlink['parameter']=$input['ip'];
+                    LinkFilter::create($filterlink);
+                }
 
-            if($input['isp']!="" || $input['isp']!=NULL){
-                $filterlink['type']=2;
-                $filterlink['parameter']=$input['isp'];
-                LinkFilter::create($filterlink);
-            }
+                if($input['isp']!="" || $input['isp']!=NULL){
+                    $filterlink['type']=2;
+                    $filterlink['parameter']=implode(',',$input['isp']);
+                    LinkFilter::create($filterlink);
+                }
 
-            if($input['browser']!="" || $input['browser']!=NULL){
-                $filterlink['type']=3;
-                $filterlink['parameter']=$input['browser'];
-                LinkFilter::create($filterlink);
-            }
+                if($input['browser']!="" || $input['browser']!=NULL){
+                    $filterlink['type']=3;
+                    $filterlink['parameter']=implode(',',$input['browser']);
+                    LinkFilter::create($filterlink);
+                }
 
-            if($input['os']!="" || $input['os']!=NULL){
-                $filterlink['type']=4;
-                $filterlink['parameter']=$input['os'];
-                LinkFilter::create($filterlink);
-            }
+                if($input['os']!="" || $input['os']!=NULL){
+                    $filterlink['type']=4;
+                    $filterlink['parameter']=implode(',',$input['os']);
+                    LinkFilter::create($filterlink);
+                }
 
-            if($input['devicetype']!="" || $input['devicetype']!=NULL){
-                $filterlink['type']=5;
-                $filterlink['parameter']=$input['devicetype'];
-                LinkFilter::create($filterlink);
-            }
+                if($input['devicetype']!="" || $input['devicetype']!=NULL){
+                    $filterlink['type']=5;
+                    $filterlink['parameter']=implode(',',$input['devicetype']);
+                    LinkFilter::create($filterlink);
+                }
 
-            if($input['country']!="" || $input['country']!=NULL){
-                $filterlink['type']=6;
-                $filterlink['parameter']=$input['country'];
-                LinkFilter::create($filterlink);
-            } 
+                if($input['country']!="" || $input['country']!=NULL){
+                    $filterlink['type']=6;
+                    $filterlink['parameter']=implode(',',$input['country']);
+                    LinkFilter::create($filterlink);
+                }
 
-            if($input['iprange']!="" || $input['iprange']!=NULL){
-                $filterlink['type']=7;
-                $filterlink['parameter']=$input['iprange'];
-                LinkFilter::create($filterlink);
-            }
+                if($input['iprange']!="" || $input['iprange']!=NULL){
+                    $filterlink['type']=7;
+                    $filterlink['parameter']=$input['iprange'];
+                    LinkFilter::create($filterlink);
+                }
 
             return redirect('/admin/linkList');
         }else{
